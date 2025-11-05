@@ -1,0 +1,9 @@
+{
+"commands": [
+
+
+"ntp client remove server ${NTP_SERVER}\n",
+
+	    	"configuration save\n"
+]
+}

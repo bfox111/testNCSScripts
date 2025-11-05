@@ -1,0 +1,67 @@
+{
+"commands": [
+"
+<edit-config>
+		<target>
+			<running/>
+		</target>
+		<default-operation>merge</default-operation>
+		<test-option>test-then-set</test-option>
+		<config>
+	<logical-ports xmlns=\"urn:ciena:params:xml:ns:yang:ciena-pn::ciena-mef-logical-port\">
+  		<logical-port>
+		    <name>1</name>
+		    <binding>1</binding>
+		    <mtu>${MTU}</mtu>
+    <description>1</description>
+  </logical-port>
+  <logical-port>
+    <name>2</name>
+    <binding>2</binding>
+    <mtu>${MTU}</mtu>
+    <description>2</description>
+  </logical-port>
+  <logical-port>
+    <name>3</name>
+    <binding>3</binding>
+    <mtu>${MTU}</mtu>
+    <description>3</description>
+  </logical-port>
+  <logical-port>
+    <name>4</name>
+    <binding>4</binding>
+    <mtu>${MTU}</mtu>
+    <description>4</description>
+  </logical-port>
+  <logical-port>
+    <name>5</name>
+    <binding>5</binding>
+    <mtu>${MTU}</mtu>
+    <description>5</description>
+  </logical-port>
+  <logical-port>
+    <name>6</name>
+    <binding>6</binding>
+    <mtu>${MTU}</mtu>
+    <description>6</description>
+  </logical-port>
+  <logical-port>
+    <name>7</name>
+    <binding>7</binding>
+    <mtu>${MTU}</mtu>
+    <description>7</description>
+  </logical-port>
+  <logical-port>
+    <name>8</name>
+    <binding>8</binding>
+    <mtu>${MTU}</mtu>
+    <description>8</description>
+  </logical-port>
+</logical-ports>
+
+		</config>
+	</edit-config>"
+
+	]
+}
+

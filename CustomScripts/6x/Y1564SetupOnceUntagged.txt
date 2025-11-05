@@ -1,0 +1,20 @@
+{
+"commands": [
+
+
+"benchmark create generator name GENERATOR port ${UNI_PORT}\n", 
+"benchmark generator enable name GENERATOR\n", 
+"benchmark enable\n", 
+"benchmark profile create name Y1564\n", 
+"benchmark profile configuration set name Y1564 duration Once\n", 
+"benchmark profile configuration set name Y1564 bandwidth ${BANDWIDTH_MBS}\n", 
+"benchmark profile configuration set name Y1564 kpi-profile LP-Y1564\n", 
+"benchmark profile configuration set name Y1564 emix-sequence LP-Y1564\n", 
+"benchmark profile traffic set name Y1564 y1564\n", 
+"benchmark profile payload set name Y1564 dst-mac ${DEST_MAC}\n", 
+ 
+"benchmark test create name genY1564Untagged profile Y1564\n", 
+"benchmark test enable name genY1564Untagged\n",
+"config save\n"
+]
+}

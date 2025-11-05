@@ -1,0 +1,44 @@
+{
+    "tests": [
+       {
+          "testName": "VLINE-Add-UNI",
+          "testDescription": "Add UNI port to verificationCommands between PE-6x and PE-10x.",
+          "testType": "verificationCommands",
+
+          "customScripts": [
+              {
+                "deviceName": "PE-6x",
+                "cmdFile": "VLINEAddUNIPort",
+                "scriptAttributes": {
+                  "FIRST_UNI_PORT": "5",
+                  "UNI_PORT": "2",
+                  "SVLAN": "88",
+                  "MBPS_CIR": "1000",
+                  "NNI_PORT" : "11",
+                  "CIRCUIT_NAME": "VLINE88"
+                }
+              },
+              {
+                "deviceName": "PE-10x",
+                "cmdFile": "VLINEAddUNIPort",
+                "scriptAttributes": {
+                 "FIRST_UNI_PORT": "5",
+                  "UNI_PORT": "2",
+                  "SVLAN": "88",
+                  "MBPS_CIR": "1000",
+                  "CIRCUIT_NAME": "VLINE88"
+                }
+              }
+          ],
+          "sleepTime": 5,
+          "verificationCommands": {
+              "PE-6x": [
+                  "vlan show"
+              ],
+              "PE-10x": [
+                  "show flow"
+              ]
+          }
+      }
+    ]
+ }

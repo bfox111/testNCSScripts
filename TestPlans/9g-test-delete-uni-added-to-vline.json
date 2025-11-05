@@ -1,0 +1,44 @@
+{
+    "tests": [
+
+            {
+          "testName": "Delete UNI Port added to VLINE ",
+          "testDescription": "Delete UNI port added to VLINE between PE-6x and PE-10x.  ",
+          "testType": "SAT",
+
+          "customScripts": [
+              {
+                "deviceName": "PE-10x",
+                "cmdFile": "RemoveUNIportFromVLINE",
+                "scriptAttributes": {
+                  "UNI_PORT": "2",
+                  "SVLAN": "88",
+                  "CIRCUIT_NAME": "VLINE88"
+              }
+              },
+                            {
+                "deviceName": "PE-6x",
+                "cmdFile": "RemoveUNIportFromVLINE",
+                "scriptAttributes": {
+                  "UNI_PORT": "2",
+                  "SVLAN": "88",
+                  "CIRCUIT_NAME": "VLINE88"
+
+            }
+              }
+
+          ],
+          "sleepTime": 3,
+          "verificationCommands": {
+              "PE-10x": [
+                  "show flow",
+                  "config compare source before target running"
+              ],
+              "PE-6x": [
+                  "vlan show"
+              ]
+          }
+      }
+     
+    ]
+ }

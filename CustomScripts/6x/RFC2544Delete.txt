@@ -1,0 +1,13 @@
+{
+"commands": [
+
+"benchmark test disable name genRFC2544\n",
+"benchmark test delete name genRFC2544\n", 
+"benchmark profile delete name RFC2544\n", 
+"benchmark generator disable name GENERATOR\n", 
+
+"benchmark delete name GENERATOR\n", 
+"benchmark disable\n",
+"config save\n"
+]
+}

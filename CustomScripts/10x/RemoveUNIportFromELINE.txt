@@ -1,0 +1,25 @@
+{
+"commands": [
+"
+<edit-config>
+	<target>
+		<running/>
+	</target>
+	<default-operation>merge</default-operation>
+	<test-option>test-then-set</test-option>
+	<config>
+			<fps xmlns=\"urn:ciena:params:xml:ns:yang:ciena-pn:ciena-mef-fp\">
+				<fp xmlns:nc=\"urn:ietf:params:xml:ns:netconf:base:1.0\" nc:operation=\"remove\">
+					<name>FP_${UNI_PORT}_${CIRCUIT_NAME}</name>
+				</fp>
+			</fps>
+			<meter-profiles xmlns=\"urn:ciena:params:xml:ns:yang:ciena-pn::ciena-mef-meter-profile\">
+				<meter-profile xmlns:nc=\"urn:ietf:params:xml:ns:netconf:base:1.0\" nc:operation=\"remove\">
+					<name>BW_PROF_${UNI_PORT}</name>
+				</meter-profile>
+			</meter-profiles>
+		</config>
+	</edit-config>"
+
+	]
+}

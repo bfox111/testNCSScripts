@@ -1,0 +1,85 @@
+{
+"commands": [
+"
+<edit-config>
+		<target>
+			<running/>
+		</target>
+		<default-operation>merge</default-operation>
+		<test-option>test-then-set</test-option>
+		<config>
+			<sat xmlns=\"http://www.ciena.com/ns/yang/ciena-sat\">
+				<kpi-profile>
+					<name>LP-Y1564</name>
+
+					    <pcp>
+     						 <pcp-value>0</pcp-value>
+						<throughput>${THROUGHPUT_PERCENT}0000</throughput>
+						<frameloss>${FRAMELOSS}</frameloss>
+						<latency>${LATENCY}</latency>
+						<pdv>${JITTER}</pdv>
+    					</pcp>
+ 					   <pcp>
+					      <pcp-value>1</pcp-value>
+						<throughput>${THROUGHPUT_PERCENT}0000</throughput>
+						<frameloss>${FRAMELOSS}</frameloss>
+						<latency>${LATENCY}</latency>
+						<pdv>${JITTER}</pdv>
+					    </pcp>
+					    <pcp>
+						      <pcp-value>2</pcp-value>
+						<throughput>${THROUGHPUT_PERCENT}0000</throughput>
+						<frameloss>${FRAMELOSS}</frameloss>
+						<latency>${LATENCY}</latency>
+						<pdv>${JITTER}</pdv>
+					    </pcp>
+					    <pcp>
+						      <pcp-value>3</pcp-value>
+						<throughput>${THROUGHPUT_PERCENT}0000</throughput>
+						<frameloss>${FRAMELOSS}</frameloss>
+						<latency>${LATENCY}</latency>
+						<pdv>${JITTER}</pdv>
+					    </pcp>
+					    <pcp>
+					      <pcp-value>4</pcp-value>
+						<throughput>${THROUGHPUT_PERCENT}0000</throughput>
+						<frameloss>${FRAMELOSS}</frameloss>
+						<latency>${LATENCY}</latency>
+						<pdv>${JITTER}</pdv>
+					    </pcp>
+					    <pcp>
+					      <pcp-value>5</pcp-value>
+						<throughput>${THROUGHPUT_PERCENT}0000</throughput>
+						<frameloss>${FRAMELOSS}</frameloss>
+						<latency>${LATENCY}</latency>
+						<pdv>${JITTER}</pdv>
+					    </pcp>
+					    <pcp>
+					      <pcp-value>6</pcp-value>
+						<throughput>${THROUGHPUT_PERCENT}0000</throughput>
+						<frameloss>${FRAMELOSS}</frameloss>
+						<latency>${LATENCY}</latency>
+						<pdv>${JITTER}</pdv>
+					    </pcp>
+					    <pcp>
+					      <pcp-value>7</pcp-value>
+						<throughput>${THROUGHPUT_PERCENT}0000</throughput>
+						<frameloss>${FRAMELOSS}</frameloss>
+						<latency>${LATENCY}</latency>
+						<pdv>${JITTER}</pdv>
+ 					   </pcp>
+
+					<untagged>
+						<throughput>${THROUGHPUT_PERCENT}0000</throughput>
+						<frameloss>${FRAMELOSS}</frameloss>
+						<latency>${LATENCY}</latency>
+						<pdv>${JITTER}</pdv>
+					</untagged>
+				</kpi-profile>
+			</sat>		
+		</config>
+	</edit-config>"
+
+	]
+}
+

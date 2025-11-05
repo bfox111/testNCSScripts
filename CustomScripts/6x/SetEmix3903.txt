@@ -1,0 +1,6 @@
+{
+"commands": [
+		"benchmark generator emix-sequence create name LP-Y1564 sequence abcdegu u-frame-size 9000\n",
+	    	"configuration save\n"
+]
+}

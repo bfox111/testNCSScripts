@@ -1,0 +1,47 @@
+{
+"commands": [
+"benchmark generator kpi-profile create name LP-Y1564 pcp 0 throughput 95.0 frameloss .01 latency 15 pdv 5 single-outage-max 1 sum-outages-max 2 max-num-outages 3\n",
+"benchmark generator kpi-profile set name LP-Y1564 pcp 1 throughput 95.0 frameloss .01 latency 15 pdv 5 single-outage-max 1 sum-outages-max 2 max-num-outages 3\n",
+"benchmark generator kpi-profile set name LP-Y1564 pcp 2 throughput 95.0 frameloss .01 latency 15 pdv 5 single-outage-max 1 sum-outages-max 2 max-num-outages 3\n",
+"benchmark generator kpi-profile set name LP-Y1564 pcp 3 throughput 95.0 frameloss .01 latency 15 pdv 5 single-outage-max 1 sum-outages-max 2 max-num-outages 3\n",
+"benchmark generator kpi-profile set name LP-Y1564 pcp 4 throughput 95.0 frameloss .01 latency 15 pdv 5 single-outage-max 1 sum-outages-max 2 max-num-outages 3\n",
+"benchmark generator kpi-profile set name LP-Y1564 pcp 5 throughput 95.0 frameloss .01 latency 15 pdv 5 single-outage-max 1 sum-outages-max 2 max-num-outages 3\n",
+"benchmark generator kpi-profile set name LP-Y1564 pcp 6 throughput 95.0 frameloss .01 latency 15 pdv 5 single-outage-max 1 sum-outages-max 2 max-num-outages 3\n",
+"benchmark generator kpi-profile set name LP-Y1564 pcp 7 throughput 95.0 frameloss .01 latency 15 pdv 5 single-outage-max 1 sum-outages-max 2 max-num-outages 3\n",
+"benchmark generator kpi-profile set name LP-Y1564 untagged throughput 95.0 frameloss .01 latency 15 pdv 5 single-outage-max 1 sum-outages-max 2 max-num-outages 3\n",
+
+"benchmark generator kpi-profile create name ATT_KPI pcp 0 throughput 95.0 frameloss .001 latency 5 pdv 2 single-outage-max 1 sum-outages-max 2 max-num-outages 3\n",
+"benchmark generator kpi-profile set name ATT_KPI pcp 1 throughput 95.0 frameloss .001 latency 5 pdv 2 single-outage-max 1 sum-outages-max 2 max-num-outages 3\n",
+"benchmark generator kpi-profile set name ATT_KPI pcp 2 throughput 95.0 frameloss .001 latency 5 pdv 2 single-outage-max 1 sum-outages-max 2 max-num-outages 3\n",
+"benchmark generator kpi-profile set name ATT_KPI pcp 3 throughput 95.0 frameloss .001 latency 5 pdv 2 single-outage-max 1 sum-outages-max 2 max-num-outages 3\n",
+"benchmark generator kpi-profile set name ATT_KPI pcp 4 throughput 95.0 frameloss .001 latency 5 pdv 2 single-outage-max 1 sum-outages-max 2 max-num-outages 3\n",
+"benchmark generator kpi-profile set name ATT_KPI pcp 5 throughput 95.0 frameloss .001 latency 5 pdv 2 single-outage-max 1 sum-outages-max 2 max-num-outages 3\n",
+"benchmark generator kpi-profile set name ATT_KPI pcp 6 throughput 95.0 frameloss .001 latency 5 pdv 2 single-outage-max 1 sum-outages-max 2 max-num-outages 3\n",
+"benchmark generator kpi-profile set name ATT_KPI pcp 7 throughput 95.0 frameloss .001 latency 5 pdv 2 single-outage-max 1 sum-outages-max 2 max-num-outages 3\n",
+"benchmark generator kpi-profile set name ATT_KPI untagged throughput 95.0 frameloss .001 latency 5 pdv 2 single-outage-max 1 sum-outages-max 2 max-num-outages 3\n",
+
+"benchmark generator kpi-profile create name Dish_KPI pcp 0 throughput 95.0 frameloss .0001 latency 7 pdv 1 single-outage-max 1 sum-outages-max 2 max-num-outages 3\n",
+"benchmark generator kpi-profile set name Dish_KPI pcp 1 throughput 95.0 frameloss .0001 latency 7 pdv 1 single-outage-max 1 sum-outages-max 2 max-num-outages 3\n",
+"benchmark generator kpi-profile set name Dish_KPI pcp 2 throughput 95.0 frameloss .0001 latency 7 pdv 1 single-outage-max 1 sum-outages-max 2 max-num-outages 3\n",
+"benchmark generator kpi-profile set name Dish_KPI pcp 3 throughput 95.0 frameloss .0001 latency 7 pdv 1 single-outage-max 1 sum-outages-max 2 max-num-outages 3\n",
+"benchmark generator kpi-profile set name Dish_KPI pcp 4 throughput 95.0 frameloss .0001 latency 7 pdv 1 single-outage-max 1 sum-outages-max 2 max-num-outages 3\n",
+"benchmark generator kpi-profile set name Dish_KPI pcp 5 throughput 95.0 frameloss .0001 latency 7 pdv 1 single-outage-max 1 sum-outages-max 2 max-num-outages 3\n",
+"benchmark generator kpi-profile set name Dish_KPI pcp 6 throughput 95.0 frameloss .0001 latency 7 pdv 1 single-outage-max 1 sum-outages-max 2 max-num-outages 3\n",
+"benchmark generator kpi-profile set name Dish_KPI pcp 7 throughput 95.0 frameloss .0001 latency 7 pdv 1 single-outage-max 1 sum-outages-max 2 max-num-outages 3\n",
+"benchmark generator kpi-profile set name Dish_KPI untagged throughput 95.0 frameloss .0001 latency 7 pdv 1 single-outage-max 1 sum-outages-max 2 max-num-outages 3\n",
+
+
+"benchmark generator kpi-profile create name TMO_KPI pcp 0 throughput 90.0 frameloss .0001 latency 16 pdv 4 single-outage-max 1 sum-outages-max 2 max-num-outages 3\n",
+"benchmark generator kpi-profile set name TMO_KPI pcp 1 throughput 90.0 frameloss .0001 latency 16 pdv 4 single-outage-max 1 sum-outages-max 2 max-num-outages 3\n",
+"benchmark generator kpi-profile set name TMO_KPI pcp 2 throughput 90.0 frameloss .0001 latency 16 pdv 4 single-outage-max 1 sum-outages-max 2 max-num-outages 3\n",
+"benchmark generator kpi-profile set name TMO_KPI pcp 3 throughput 90.0 frameloss .0001 latency 16 pdv 4 single-outage-max 1 sum-outages-max 2 max-num-outages 3\n",
+"benchmark generator kpi-profile set name TMO_KPI pcp 4 throughput 90.0 frameloss .0001 latency 16 pdv 4 single-outage-max 1 sum-outages-max 2 max-num-outages 3\n",
+"benchmark generator kpi-profile set name TMO_KPI pcp 5 throughput 90.0 frameloss .0001 latency 16 pdv 4 single-outage-max 1 sum-outages-max 2 max-num-outages 3\n",
+"benchmark generator kpi-profile set name TMO_KPI pcp 6 throughput 90.0 frameloss .0001 latency 16 pdv 4 single-outage-max 1 sum-outages-max 2 max-num-outages 3\n",
+"benchmark generator kpi-profile set name TMO_KPI pcp 7 throughput 90.0 frameloss .0001 latency 16 pdv 4 single-outage-max 1 sum-outages-max 2 max-num-outages 3\n",
+"benchmark generator kpi-profile set name TMO_KPI untagged throughput 90.0 frameloss .0001 latency 16 pdv 4 single-outage-max 1 sum-outages-max 2 max-num-outages 3\n",
+
+	    	"configuration save\n"
+]
+}
+

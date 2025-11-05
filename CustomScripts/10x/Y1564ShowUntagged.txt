@@ -1,0 +1,11 @@
+{
+"commands": [
+"
+	<get>
+		<filter type=\"subtree\">
+			<sat xmlns=\"http://www.ciena.com/ns/yang/ciena-sat\"/>
+		</filter>
+	</get>"
+
+	]
+}

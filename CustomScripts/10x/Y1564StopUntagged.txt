@@ -1,0 +1,11 @@
+{
+"commands": [
+"
+	<test-instance-stop xmlns=\"http://www.ciena.com/ns/yang/ciena-sat\">
+		<test-instance-name>genY1564Untagged</test-instance-name>
+	</test-instance-stop>
+"
+
+	]
+}
+

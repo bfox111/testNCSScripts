@@ -1,0 +1,37 @@
+
+{
+"commands": [
+"
+<edit-config>
+		<target>
+			<running/>
+		</target>
+		<default-operation>merge</default-operation>
+		<test-option>test-then-set</test-option>
+		<config>
+
+
+<sat xmlns=\"http://www.ciena.com/ns/yang/ciena-sat\">
+  <sat-global>
+    <admin-state>enabled</admin-state>
+  </sat-global>
+  <entity>
+    <name>REFLECTOR</name>
+    <port>${UNI_PORT}</port>
+    <role>reflector</role>
+    <assoc-gen-vendor-type>other</assoc-gen-vendor-type>
+    <reflection-level>l2-to-l4</reflection-level>
+    <admin-state>enabled</admin-state>
+  </entity>
+  <test-instance>
+    <name>reflectSAT</name>
+    <flow-point-id>${FLOW_POINT}</flow-point-id>
+    <admin-state>enabled</admin-state>
+  </test-instance>
+</sat>
+
+		</config>
+	</edit-config>"
+
+	]
+}

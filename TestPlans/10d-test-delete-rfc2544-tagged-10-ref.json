@@ -1,0 +1,80 @@
+{
+    "tests": [
+      {
+          "testName": "Stop RFC2544 ",
+          "testDescription": "Stop RFC2544 test between PE-10x and PE-6x.  PE-6x is the reflector.",
+          "testType": "SAT",
+
+          "customScripts": [
+            {
+                "deviceName": "PE-10x",
+                "cmdFile": "RFC2544Stop",
+                "scriptAttributes": {
+                  "UNI_PORT": "5"
+              }
+              }
+
+          ],
+          "sleepTime": 1,
+          "verificationCommands": {
+              "PE-10x": [
+                  "show sat entities"
+              ]
+          }
+      },
+      
+      {
+          "testName": "Disable RFC2544 ",
+          "testDescription": "Disable RFC2544 test between PE-6x and PE-10x.  PE-6x is the reflector.",
+          "testType": "SAT",
+
+          "customScripts": [
+            {
+                "deviceName": "PE-10x",
+                "cmdFile": "RFC2544Disable",
+                "scriptAttributes": {
+                  "UNI_PORT": "5"
+              }
+              }
+
+          ],
+          "sleepTime": 1,
+          "verificationCommands": {
+              "PE-10x": [
+                  "show sat entities"
+              ]
+          }
+      },
+      {
+          "testName": "Delete RFC2544 ",
+          "testDescription": "Delete RFC2544 test between PE-6x and PE-10x.  PE-10x is the reflector.",
+          "testType": "SAT",
+
+          "customScripts": [
+              {
+                "deviceName": "PE-6x",
+                "cmdFile": "DeleteAllVlansReflector",
+                "scriptAttributes": {
+              }
+              },
+                            {
+                "deviceName": "PE-10x",
+                "cmdFile": "RFC2544RemoveTagged",
+                "scriptAttributes": {
+              }
+              }
+
+          ],
+          "sleepTime": 1,
+          "verificationCommands": {
+              "PE-10x": [
+                  "show sat entities"
+              ],
+              "PE-6x": [
+                  "bench test show"
+              ]
+          }
+      }
+     
+    ]
+ }

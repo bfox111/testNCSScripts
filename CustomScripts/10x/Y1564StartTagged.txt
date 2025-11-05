@@ -1,0 +1,10 @@
+{
+"commands": [
+"
+	<test-instance-start xmlns=\"http://www.ciena.com/ns/yang/ciena-sat\">
+		<test-instance-name>genY1564Tagged</test-instance-name>
+	</test-instance-start>
+"
+
+	]
+}

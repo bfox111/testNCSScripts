@@ -1,0 +1,45 @@
+{
+"commands": [
+"
+<edit-config>
+	<target>
+		<running/>
+	</target>
+	<default-operation>merge</default-operation>
+	<test-option>test-then-set</test-option>
+	<config>
+			<meter-profiles xmlns=\"urn:ciena:params:xml:ns:yang:ciena-pn::ciena-mef-meter-profile\">
+			  <meter-profile>
+				    <name>BW_PROF_${UNI_PORT}_${SVLAN}</name>
+				    <cir>${MBPS_CIR}000</cir>
+				    <eir>0</eir>
+				    <cbs>256</cbs>
+				    <ebs>0</ebs>
+			  </meter-profile>
+			</meter-profiles>
+
+		<fps xmlns=\"urn:ciena:params:xml:ns:yang:ciena-pn:ciena-mef-fp\">
+				<fp>
+					<name>FP_${FIRST_UNI_PORT}_${CIRCUIT_NAME}</name>
+					<pfg-group>leaf</pfg-group>
+				</fp>
+				<fp>
+				    <name>FP_${UNI_PORT}_${CIRCUIT_NAME}</name>
+				    <fd-name>FD_${CIRCUIT_NAME}</fd-name>
+				    <logical-port>${UNI_PORT}</logical-port>
+					<pfg-group>leaf</pfg-group>
+				    <classifier-list>CLASSIFIER_${SVLAN}</classifier-list>
+				    <classifier-list-precedence>100</classifier-list-precedence>
+				    <meter-profile>BW_PROF_${UNI_PORT}_${SVLAN}</meter-profile>
+				    <stats-collection>on</stats-collection>
+				  </fp>
+				</fps>
+
+
+
+		</config>
+	</edit-config>"
+
+	]
+}
+

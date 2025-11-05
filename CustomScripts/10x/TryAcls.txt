@@ -1,0 +1,32 @@
+{
+"commands": [
+	"<edit-config>
+		<target>
+			<running/>
+		</target>
+		<default-operation>merge</default-operation>
+		<test-option>set</test-option>
+		<config>
+			<access-profiles xmlns=\"urn:ciena:params:xml:ns:yang:ciena-pn::ciena-mef-access-flow\">
+				<access-profile>
+					<name>permitlistB</name>
+					<type>IP-interface</type>
+					<access-flow>
+						<name>af1</name>
+						<classifier-list-precedence>1</classifier-list-precedence>
+						<filter-action>allow</filter-action>
+						<classifier>
+							<name>class1</name>
+							<filter-entry>
+								<filter-parameter xmlns:classifier=\"urn:ciena:params:xml:ns:yang:ciena-pn::ciena-mef-classifier\">classifier:source-ip</filter-parameter>
+								<source-address>172.31.0.0/16</source-address>
+							</filter-entry>
+						</classifier>
+					</access-flow>
+				</access-profile>
+			</access-profiles>
+		</config>
+	</edit-config>"
+
+	]
+}

@@ -1,0 +1,22 @@
+{
+"commands": [
+
+
+"benchmark create generator name GENERATOR port ${UNI_PORT}\n", 
+"benchmark generator enable name GENERATOR\n", 
+"benchmark enable\n", 
+"benchmark profile create name RFC2544\n", 
+"benchmark profile configuration set name RFC2544 duration 15\n", 
+"benchmark profile configuration set name RFC2544 bandwidth ${BANDWIDTH_MBS}\n",
+"benchmark profile configuration set name RFC2544 frame-size-list 5000\n",
+"benchmark profile traffic set name RFC2544 rfc2544\n", 
+"benchmark profile payload set name RFC2544 dst-mac ${DEST_MAC}\n", 
+"benchmark profile payload set name RFC2544 vlan-encap-type dot1q\n",
+
+ 
+"benchmark test create name genRFC2544 profile RFC2544 vtag-stack ${CVLAN}\n", 
+"benchmark test enable name genRFC2544\n",
+"config save\n"
+]
+}
+

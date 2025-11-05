@@ -1,0 +1,23 @@
+{
+"commands": [
+"
+<edit-config>
+		<target>
+			<running/>
+		</target>
+		<default-operation>merge</default-operation>
+		<test-option>test-then-set</test-option>
+		<config>
+			<sat xmlns=\"http://www.ciena.com/ns/yang/ciena-sat\">
+				<emix-sequence>
+					<name>LP-Y1564</name>
+					<sequence>abcdegu</sequence>
+					<u-frame-size>9000</u-frame-size>
+				</emix-sequence>
+			</sat>		
+		</config>
+	</edit-config>"
+
+	]
+}
+

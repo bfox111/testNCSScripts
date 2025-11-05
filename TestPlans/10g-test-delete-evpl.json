@@ -1,0 +1,50 @@
+{
+    "tests": [
+            {
+          "testName": "Delete EVPL",
+          "testDescription": "Delete EVPL test between PE-6x and PE-10x.",
+          "testType": "SAT",
+
+          "customScripts": [
+              {
+                "deviceName": "PE-6x",
+                "cmdFile": "DeleteEVPL",
+                "scriptAttributes": {
+                  "SVLAN": "700",
+                  "NNI_PORT": "11",
+                  "UNI_PORT": "5",
+                  "CIRCUIT_NAME": "EVPL700",
+                  "SERVICE_NUM": "1"
+              }
+              },
+                            {
+                "deviceName": "PE-10x",
+                "cmdFile": "DeleteEVPL",
+                "scriptAttributes": {
+                  "UNI_PORT": "5",
+                  "SVLAN": "700",
+                  "CVLAN": "400",
+                  "MD_LEVEL": "3",
+                  "CIRCUIT_NAME": "EVPL700",
+                  "SERVICE_NUM": "1",
+                  "NNI_PORT": "4"
+              }
+              }
+
+          ],
+          "sleepTime": 1,
+          "verificationCommands": {
+              "PE-6x": [
+                  "vlan show",
+                  "traffic-prof stand show"
+              ],
+              "PE-10x": [
+                  "show flow",
+                  "config compare source before target running"
+              ]
+          }
+      }
+
+     
+    ]
+ }

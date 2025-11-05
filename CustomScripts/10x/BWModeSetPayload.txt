@@ -1,0 +1,19 @@
+{
+"commands": [
+	"<edit-config>
+		<target>
+			<running/>
+		</target>
+		<default-operation>merge</default-operation>
+		<test-option>set</test-option>
+		<config>
+			<bw-calculation-mode xmlns=\"http://www.ciena.com/ns/yang/ciena-bw-calculation-mode\">
+				<iqos-bw-calculation-mode xmlns:ciena-bw-calculation-mode=\"http://www.ciena.com/ns/yang/ciena-bw-calculation-mode\">ciena-bw-calculation-mode:payload</iqos-bw-calculation-mode>
+			</bw-calculation-mode>
+
+		</config>
+	</edit-config>"
+
+
+	]
+}

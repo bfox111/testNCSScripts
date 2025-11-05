@@ -1,0 +1,30 @@
+{
+"commands": [
+
+
+	"<edit-config>
+		<target>
+			<running/>
+		</target>
+		<config>
+			<sat xmlns=\"http://www.ciena.com/ns/yang/ciena-sat\">
+				<test-instance>
+					<name>genY1564Tagged</name>
+					<admin-state>disabled</admin-state>
+				</test-instance>
+				<entity>
+					<name>GENERATOR</name>
+					<port>${UNI_PORT}</port>
+					<admin-state>disabled</admin-state>
+				</entity>
+
+			</sat>
+
+		</config>
+	</edit-config>"
+
+
+	]
+}
+
+

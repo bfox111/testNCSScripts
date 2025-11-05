@@ -1,0 +1,13 @@
+{
+"commands": [
+
+"benchmark test disable name genY1564Untagged\n",
+"benchmark test delete name genY1564Untagged\n", 
+"benchmark profile delete name Y1564\n", 
+"benchmark generator disable name GENERATOR\n", 
+
+"benchmark delete name GENERATOR\n", 
+"benchmark disable\n",
+"config save\n"
+]
+}

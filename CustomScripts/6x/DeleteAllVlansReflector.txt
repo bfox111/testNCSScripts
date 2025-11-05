@@ -1,0 +1,11 @@
+{
+"commands": [
+	"benchmark test disable name refAllVlans\n",
+	"benchmark test delete name refAllVlans \n",
+	"benchmark reflector disable name REFLECT\n",
+	"benchmark delete name REFLECT\n",
+	"benchmark disable\n",
+
+	    	"configuration save\n"
+]
+}

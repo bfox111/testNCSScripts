@@ -1,0 +1,99 @@
+{
+"commands": [
+"
+<edit-config>
+		<target>
+			<running/>
+		</target>
+		<default-operation>merge</default-operation>
+		<test-option>test-then-set</test-option>
+		<config>
+<meter-profiles xmlns=\"urn:ciena:params:xml:ns:yang:ciena-pn::ciena-mef-meter-profile\">
+  <meter-profile>
+    <name>BW_PROF_${UNI_PORT}</name>
+    <cir>${MBPS_CIR}000</cir>
+    <eir>0</eir>
+    <cbs>256</cbs>
+    <ebs>0</ebs>
+  </meter-profile>
+</meter-profiles>
+<classifiers xmlns=\"urn:ciena:params:xml:ns:yang:ciena-pn::ciena-mef-classifier\">
+  <classifier>
+    <name>CLASSIFIER_4096</name>
+    <filter-entry>
+      <filter-parameter
+        xmlns:classifier=\"urn:ciena:params:xml:ns:yang:ciena-pn::ciena-mef-classifier\">classifier:vtag-stack</filter-parameter>
+      <untagged-exclude-priority-tagged>false</untagged-exclude-priority-tagged>
+    </filter-entry>
+  </classifier>
+  <classifier>
+    <name>CLASSIFIER_4097</name>
+    <filter-entry>
+      <filter-parameter
+        xmlns:classifier=\"urn:ciena:params:xml:ns:yang:ciena-pn::ciena-mef-classifier\">classifier:vtag-stack</filter-parameter>
+      <vtags>
+        <tag>1</tag>
+      </vtags>
+    </filter-entry>
+  </classifier>
+  <classifier>
+    <name>CLASSIFIER_${SVLAN}</name>
+    <filter-entry>
+      <filter-parameter
+        xmlns:classifier=\"urn:ciena:params:xml:ns:yang:ciena-pn::ciena-mef-classifier\">classifier:vtag-stack</filter-parameter>
+      <vtags>
+        <tag>1</tag>
+        <vlan-id>${SVLAN}</vlan-id>
+      </vtags>
+    </filter-entry>
+  </classifier>
+</classifiers>
+
+<fds xmlns=\"urn:ciena:params:xml:ns:yang:ciena-pn:ciena-mef-fd\">
+  <fd>
+     <name>FD_${CIRCUIT_NAME}</name>
+    <description>${CIRCUIT_NAME}</description>
+  </fd>
+</fds>
+<fps xmlns=\"urn:ciena:params:xml:ns:yang:ciena-pn:ciena-mef-fp\">
+  <fp>
+    <name>FP_${NNI_PORT}_${CIRCUIT_NAME}</name>
+    <fd-name>FD_${CIRCUIT_NAME}</fd-name>
+    <logical-port>${NNI_PORT}</logical-port>
+    <classifier-list>CLASSIFIER_${SVLAN}</classifier-list>
+    <classifier-list-precedence>${NNI_PORT}</classifier-list-precedence>
+    <stats-collection>on</stats-collection>
+  </fp>
+  <fp>
+    <name>FP_${UNI_PORT}_${CIRCUIT_NAME}</name>
+    <fd-name>FD_${CIRCUIT_NAME}</fd-name>
+    <logical-port>${UNI_PORT}</logical-port>
+    <ingress-l2-transform>
+      <ingress-name>ingressTransform</ingress-name>
+      <vlan-stack>
+        <tag>1</tag>
+        <push-pcp>map</push-pcp>
+        <push-vid>${SVLAN}</push-vid>
+      </vlan-stack>
+    </ingress-l2-transform>
+    <egress-l2-transform>
+      <egress-name>egressTransform</egress-name>
+      <vlan-stack>
+        <tag>1</tag>
+        <pop-type/>
+      </vlan-stack>
+    </egress-l2-transform>
+    <classifier-list>CLASSIFIER_4096</classifier-list>
+    <classifier-list>CLASSIFIER_4097</classifier-list>
+    <classifier-list-precedence>100</classifier-list-precedence>
+    <meter-profile>BW_PROF_${UNI_PORT}</meter-profile>
+    <stats-collection>on</stats-collection>
+  </fp>
+</fps>
+
+		</config>
+	</edit-config>"
+
+	]
+}
+

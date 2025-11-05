@@ -1,0 +1,27 @@
+{
+"commands": [
+"vlan create vlan ${SVLAN}\n",
+"vlan add vlan ${SVLAN} port ${NNI_PORT}\n",
+"vlan add vlan ${SVLAN} port ${UNI_PORT}\n",
+
+"traffic-profiling enable\n",
+"traffic-profiling set meter-provisioning eir\n",
+
+"traffic-profiling enable port ${UNI_PORT}\n",
+"traffic-profiling  set port ${UNI_PORT}  mode advanced\n",
+"traffic-profiling standard-profile create port ${UNI_PORT} profile ${SERVICE_NUM} name BW_PROF_${UNI_PORT}_${SVLAN} cir ${MBPS_CIR}000 eir 0 cbs 256  ebs 0 vlan ${SVLAN} \n", 
+
+"cfm enable\n",
+
+"cfm service create vlan ${SVLAN} name ${CIRCUIT_NAME} md md${MD_LEVEL}\n",
+"cfm service set service ${CIRCUIT_NAME} alarm-time 0\n",
+"cfm service set service ${CIRCUIT_NAME} remote-mep-aging-time 300000\n",
+"cfm service enable service ${CIRCUIT_NAME}\n",
+"cfm mep create service ${CIRCUIT_NAME} port ${UNI_PORT} vlan ${SVLAN} type up mepid ${LOCAL_MEP}\n",
+"cfm mep set service ${CIRCUIT_NAME} local-mepid ${LOCAL_MEP} ccm-priority 0\n",
+"cfm delay send service ${CIRCUIT_NAME} local-mepid ${LOCAL_MEP} mepid ${REMOTE_MEP} test-id ${SERVICE_NUM} iterate 0 priority 4 frame-size 1400\n",
+"cfm synthetic-loss send service ${CIRCUIT_NAME} local-mepid ${LOCAL_MEP} mepid ${REMOTE_MEP} test-id ${SERVICE_NUM} iterate 0 priority 4 frame-size 1400\n",
+
+	    	"configuration save\n"
+]
+}

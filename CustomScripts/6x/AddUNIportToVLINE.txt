@@ -1,0 +1,18 @@
+{
+"commands": [
+
+"vlan add vlan ${SVLAN} port ${UNI_PORT}\n",
+
+"traffic-profiling enable port ${UNI_PORT}\n",
+"traffic-profiling  set port ${UNI_PORT}  mode advanced\n",
+"traffic-profiling standard-profile create port ${UNI_PORT} profile 1 name BW_PROF_${UNI_PORT}_${SVLAN} cir ${MBPS_CIR}000 eir 0 cbs 256  ebs 0\n", 
+
+"private-forwarding-groups set port ${NNI_PORT} policy univ fwd-group B\n",
+"private-forwarding-groups set policy univ policy-group-A B\n",
+"private-forwarding-groups enable policy univ\n",
+
+	    	"configuration save\n"
+]
+}
+
+

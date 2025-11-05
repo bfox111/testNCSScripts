@@ -1,0 +1,35 @@
+{
+"commands": [
+"vlan create vlan ${SVLAN}\n",
+"vlan add vlan ${SVLAN} port ${NNI_PORT}\n",
+
+"virtual-circuit ethernet create vc vc-${CIRCUIT_NAME} vlan ${SVLAN}\n",
+"virtual-switch ethernet create vs vs-${CIRCUIT_NAME} vc vc-${CIRCUIT_NAME}\n",
+"virtual-switch ethernet add vs vs-${CIRCUIT_NAME} port ${UNI_PORT} vlan ${CVLAN}\n",
+
+"traffic-profiling enable\n",
+"traffic-profiling set meter-provisioning eir\n",
+
+"port set port ${NNI_PORT} acceptable-frame-type all\n",
+
+"traffic-profiling enable port ${UNI_PORT}\n",
+"traffic-profiling  set port ${UNI_PORT}  mode advanced\n",
+"traffic-profiling standard-profile create port ${UNI_PORT} profile ${SERVICE_NUM} name BW_PROF_${UNI_PORT}_${SVLAN} cir ${MBPS_CIR}000 eir 0 cbs 256  ebs 0\n", 
+
+"port enable port ${UNI_PORT}\n",
+
+"cfm enable\n",
+"cfm set vs-automatic-meps off\n",
+"cfm service create vs vs-${CIRCUIT_NAME} name ${CIRCUIT_NAME} md md${MD_LEVEL}\n",
+"cfm service set service ${CIRCUIT_NAME} alarm-time 0\n",
+"cfm service set service ${CIRCUIT_NAME} remote-mep-aging-time 300000\n",
+"cfm service enable service ${CIRCUIT_NAME}\n",
+"cfm mep create service ${CIRCUIT_NAME} port ${UNI_PORT} type up mepid ${LOCAL_MEP}\n",
+"cfm mep set service ${CIRCUIT_NAME} local-mepid ${LOCAL_MEP} ccm-priority 0\n",
+"cfm delay send service ${CIRCUIT_NAME} local-mepid ${LOCAL_MEP} mepid ${REMOTE_MEP} iterate 0 priority 4 frame-size 1400\n",
+"cfm synthetic-loss send service ${CIRCUIT_NAME} local-mepid ${LOCAL_MEP} mepid ${REMOTE_MEP} test-id 1 iterate 0 priority 4 frame-size 1400\n",
+
+
+	    	"configuration save\n"
+]
+}

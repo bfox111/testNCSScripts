@@ -1,0 +1,6 @@
+{
+"commands": [
+	"system shell set global-inactivity-timer off\n",
+	    	"configuration save\n"
+]
+}

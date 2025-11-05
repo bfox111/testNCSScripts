@@ -1,0 +1,6 @@
+{
+"commands": [
+
+"benchmark test start name genRFC2544\n"
+]
+}

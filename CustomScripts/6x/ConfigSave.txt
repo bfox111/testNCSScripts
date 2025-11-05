@@ -1,0 +1,5 @@
+{
+"commands": [
+	    	"configuration save\n"
+]
+}

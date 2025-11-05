@@ -1,0 +1,65 @@
+{
+    "tests": [
+        {
+          "testName": "Y1564 Test",
+          "testDescription": "Setup RFC2544 test between PE-6x and PE-10x.  PE-6x is the reflector.",
+          "testType": "SAT",
+
+          "customScripts": [
+              {
+                "deviceName": "PE-6x",
+                "cmdFile": "ReflectUntagged",
+                "scriptAttributes": {
+                  "PORT": "5"
+                }
+              },
+              {
+                "deviceName": "PE-10x",
+                "cmdFile": "RFC2544SetupUntagged",
+                "scriptAttributes": {
+                  "UNI_PORT": "5",
+                  "BANDWIDTH_MBS": "1000",
+                  "DST_IP": "10.92.44.43",
+                  "SRC_IP": "10.92.44.72",
+                  "FP" : "FP_5_DIA77",
+                  "DEST_NODE": "PE-6x",
+                  "DEST_MAC": "SET_IN_CODE"
+                }
+              }
+          ],
+          "sleepTime": 5,
+          "verificationCommands": {
+               "PE-10x": [
+                  "show run config section sat"
+              ],
+              "PE-6x": [
+                  "config search string bench"
+              ]
+          }
+      },
+              {
+          "testName": "Start RFC2544 Test",
+          "testDescription": "Start RFC2544 test between PE-6x and PE-10x.  PE-6x is the reflector.",
+          "testType": "SAT",
+
+          "customScripts": [
+              {
+                "deviceName": "PE-10x",
+                "cmdFile": "RFC2544Start",
+                "scriptAttributes": {
+              }
+              }
+          ],
+          "sleepTime": 45,
+          "verificationCommands": {
+              "PE-10x": [
+                  "sh sat test-instances test-instance genY1564Untagged statistics"
+              ],
+              "PE-6x": [
+                  "bench test show name genY1564Untagged statistics"
+              ]
+          }
+      }
+     
+    ]
+ }

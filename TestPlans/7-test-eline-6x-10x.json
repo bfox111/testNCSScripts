@@ -1,0 +1,173 @@
+{
+    "tests": [
+       {
+          "testName": "ELINE",
+          "testDescription": "Setup ELINE between PE-6x and PE-10x.  Run Y1564 test.  PE-10x is the reflector.",
+          "testType": "ELINE",
+
+          "customScripts": [
+             {
+                "deviceName": "PE-6x",
+                "cmdFile": "ELINE",
+                "scriptAttributes": {
+                  "UNI_PORT": "5",
+                  "SVLAN": "610",
+                  "MBPS_CIR": "1000",
+                  "MD_LEVEL": "5",
+                  "CIRCUIT_NAME": "ELINE610",
+                  "NNI_PORT": "11",
+                  "LOCAL_MEP": "1",
+                  "REMOTE_MEP": "2"
+                }
+              },
+              {
+                "deviceName": "PE-10x",
+                "cmdFile": "ELINE",
+                "scriptAttributes": {
+                  "UNI_PORT": "5",
+                  "SVLAN": "610",
+                  "MBPS_CIR": "1000",
+                  "CIRCUIT_NAME": "ELINE610",
+                  "NNI_PORT": "4",
+                  "MD_LEVEL": "5",
+                  "LOCAL_MEP": "2",
+                  "REMOTE_MEP": "1"
+                } 
+              }
+          ],
+          "sleepTime": 10,
+          "verificationCommands": {
+              "PE-6x": [
+                  "cfm servi show",
+                  "cfm delay show ",
+                  "cfm synthetic-loss show"
+              ],
+              "PE-10x": [
+                  "show cfm delay",
+                  "sh cfm synthetic-loss-measurement",
+                  "show flow"
+              ]
+          }
+      },
+        {
+          "testName": "Y1564 Test",
+          "testDescription": "Setup Y.1564 test between PE-6x and PE-10x.  PE-10x is the reflector.",
+          "testType": "SAT",
+
+          "customScripts": [
+              {
+                "deviceName": "PE-10x",
+                "cmdFile": "ReflectTaggedAndUntagged",
+                "scriptAttributes": {
+                  "UNI_PORT": "5",
+                  "FLOW_POINT": "FP_5_ELINE610"
+                }
+              },
+              {
+                "deviceName": "PE-6x",
+                "cmdFile": "Y1564SetupOnceUntagged",
+                "scriptAttributes": {
+                  "UNI_PORT": "5",
+                  "BANDWIDTH_MBS": "1000",
+                  "DEST_NODE": "PE-10x",
+                  "DEST_MAC": "SET_IN_CODE"
+                }
+              }
+          ],
+          "sleepTime": 15,
+          "verificationCommands": {
+               "PE-6x": [
+                  "bench test show"
+              ],
+              "PE-10x": [
+                  "show sat entities"
+              ]
+          }
+      },
+              {
+          "testName": "Start Y1564 Test",
+          "testDescription": "Start Y.1564 test between PE-6x and PE-10x.  PE-10x is the reflector.",
+          "testType": "SAT",
+
+          "customScripts": [
+              {
+                "deviceName": "PE-6x",
+                "cmdFile": "Y1564StartUntagged",
+                "scriptAttributes": {
+              }
+              }
+          ],
+          "sleepTime": 45,
+          "verificationCommands": {
+              "PE-10x": [
+                  "sh sat test-instances statistics"
+              ],
+              "PE-6x": [
+                  "bench test show name genY1564Untagged statistics"
+              ]
+          }
+      },
+      {
+          "testName": "Disable Y1564 ",
+          "testDescription": "Disable Y.1564 test between PE-6x and PE-10x.  PE-10x is the reflector.",
+          "testType": "SAT",
+
+          "customScripts": [
+              {
+                "deviceName": "PE-10x",
+                "cmdFile": "DisableReflector",
+                "scriptAttributes": {
+                  "UNI_PORT": "5"
+              }
+              },
+                            {
+                "deviceName": "PE-6x",
+                "cmdFile": "Y1564DisableUntagged",
+                "scriptAttributes": {
+                  "UNI_PORT": "5"
+              }
+              }
+
+          ],
+          "sleepTime": 5,
+          "verificationCommands": {
+              "PE-10x": [
+                  "show sat entities"
+              ],
+              "PE-6x": [
+                  "bench test show"
+              ]
+          }
+      },
+      {
+          "testName": "Delete Y1564 ",
+          "testDescription": "Delete Y.1564 test between PE-6x and PE-10x.  PE-10x is the reflector.",
+          "testType": "SAT",
+
+          "customScripts": [
+              {
+                "deviceName": "PE-10x",
+                "cmdFile": "RemoveReflector",
+                "scriptAttributes": {
+              }
+              },
+                            {
+                "deviceName": "PE-6x",
+                "cmdFile": "Y1564DeleteUntagged",
+                "scriptAttributes": {
+              }
+              }
+
+          ],
+          "sleepTime": 1,
+          "verificationCommands": {
+              "PE-10x": [
+                  "show sat entities"
+              ],
+              "PE-6x": [
+                  "bench test show"
+              ]
+          }
+      }
+    ]
+ }

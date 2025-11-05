@@ -1,0 +1,21 @@
+{
+"commands": [
+"tacacs add server ${TACACS_SERVER}\n",
+"tacacs set timeout 30\n",
+"tacacs set privilegelvlrw 3\n",
+"tacacs set secret ${TACACS_SECRET}\n",
+"tacacs authorization enable\n",
+"tacacs accounting enable\n",
+"tacacs syslog enable\n",
+
+"user auth set priority 1 method tacacs scope remote\n",
+"user auth set priority 2 method local \n",
+
+
+	    	"configuration save\n"
+]
+}
+
+
+
+

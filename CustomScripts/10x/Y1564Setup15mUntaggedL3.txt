@@ -1,0 +1,57 @@
+{
+"commands": [
+
+
+	"<edit-config>
+		<target>
+			<running/>
+		</target>
+		<config>
+			<sat xmlns=\"http://www.ciena.com/ns/yang/ciena-sat\">
+				<sat-global>
+					<admin-state>enabled</admin-state>
+				</sat-global>
+				<entity>
+					<role>generator</role>
+					<name>GENERATOR</name>
+					<port>${PORT}</port>
+					<mode>in-service</mode>
+					<admin-state>enabled</admin-state>
+				</entity>
+				<test-profile>
+					<name>genY1564Untagged</name>
+					<throughput-test>false</throughput-test>
+					<frameloss-test>false</frameloss-test>
+					<latency-test>false</latency-test>
+					<pdv-test>false</pdv-test>
+					<rfc2544-suite>false</rfc2544-suite>
+					<y1564-suite>true</y1564-suite>
+					<bandwidth>${BANDWIDTH_MBS}</bandwidth>
+					<excess-bandwidth>${BANDWIDTH_MBS}</excess-bandwidth>
+					<duration>t15min</duration>
+					<pdu-type>ethernet</pdu-type>
+					<encap-type>untagged</encap-type>
+					<c-color>green</c-color>
+					<dscp>0</dscp>
+					<dst-mac>${DEST_MAC}</dst-mac>
+					<src-addr>${SRC_IP_ADDR}</src-addr>
+					<dst-addr>${DST_IP_ADDR}</dst-addr>
+					<emix-sequence>LP-Y1564</emix-sequence>
+					<kpi-profile-name>LP-Y1564</kpi-profile-name>
+				</test-profile>
+				<test-instance>
+					<name>genY1564Untagged</name>
+					<admin-state>enabled</admin-state>
+					<flow-point-id>${FLOW_PT_GEN_PORT}</flow-point-id>
+					<profile>genY1564Untagged</profile>
+					<untagged>true</untagged>
+				</test-instance>
+			</sat>
+		</config>
+	</edit-config>"
+
+
+	]
+}
+
+

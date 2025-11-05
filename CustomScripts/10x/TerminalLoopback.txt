@@ -1,0 +1,24 @@
+{
+"commands": [
+"
+<edit-config>
+		<target>
+			<running/>
+		</target>
+		<default-operation>merge</default-operation>
+		<test-option>test-then-set</test-option>
+		<config>
+			<interfaces xmlns=\"http://openconfig.net/yang/interfaces\">
+				<interface>
+					<name>${PORT}</name>
+					<config>
+						<terminal-loopback xmlns=\"http://ciena.com/ns/yang/ciena-openconfig-if-ethernet-port\">true</terminal-loopback>
+					</config>
+				</interface>
+			</interfaces>
+		</config>
+	</edit-config>"
+
+	]
+}
+

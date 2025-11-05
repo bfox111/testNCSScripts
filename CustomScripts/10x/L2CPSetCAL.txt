@@ -1,0 +1,91 @@
+{
+"commands": [
+	"<edit-config>
+		<target>
+			<running/>
+		</target>
+		<default-operation>merge</default-operation>
+		<test-option>set</test-option>
+		<config>
+
+			<l2cp-profiles xmlns=\"urn:ciena:params:xml:ns:yang:ciena-pn::ciena-mef-l2cp-profile\">
+				<l2cp-profile>
+					<name>CPT</name>
+					<protocol-disposition>
+						<protocol>cisco-cdp</protocol>
+						<untagged-disposition>forward</untagged-disposition>
+
+						<protocol>cisco-dtp</protocol>
+						<untagged-disposition>forward</untagged-disposition>
+
+						<protocol>cisco-pagp</protocol>
+						<untagged-disposition>forward</untagged-disposition>
+
+						<protocol>cisco-udld</protocol>
+						<untagged-disposition>forward</untagged-disposition>
+
+						<protocol>cisco-vtp</protocol>
+						<untagged-disposition>forward</untagged-disposition>
+
+						<protocol>cisco-stp-uplink-fast</protocol>
+						<untagged-disposition>forward</untagged-disposition>
+
+						<protocol>cisco-vlan-bridge</protocol>
+						<untagged-disposition>forward</untagged-disposition>
+
+						<protocol>xstp</protocol>
+						<untagged-disposition>forward</untagged-disposition>
+
+						<protocol>lacp</protocol>
+						<untagged-disposition>forward</untagged-disposition>
+
+						<protocol>lldp</protocol>
+						<untagged-disposition>forward</untagged-disposition>
+
+						<protocol>link-oam</protocol>
+						<untagged-disposition>forward</untagged-disposition>
+
+						<protocol>esmc</protocol>
+						<untagged-disposition>forward</untagged-disposition>
+
+						<protocol>e-lmi</protocol>
+						<untagged-disposition>forward</untagged-disposition>
+
+						<protocol>ptp-peer-delay</protocol>
+						<untagged-disposition>forward</untagged-disposition>
+
+						<protocol>gmrp</protocol>
+						<untagged-disposition>forward</untagged-disposition>
+
+						<protocol>gvrp</protocol>
+						<untagged-disposition>forward</untagged-disposition>
+
+						<protocol>bridge-rsvd-0c0d</protocol>
+						<untagged-disposition>forward</untagged-disposition>
+
+						<protocol>bridge-rsvd-0b0f</protocol>
+						<untagged-disposition>forward</untagged-disposition>
+
+						<protocol>garp-block</protocol>
+						<untagged-disposition>forward</untagged-disposition>
+
+						<protocol>bridge-block</protocol>
+						<untagged-disposition>forward</untagged-disposition>
+
+						<protocol>port-auth</protocol>
+						<untagged-disposition>forward</untagged-disposition>
+
+						<protocol>ptp</protocol>
+						<untagged-disposition>forward</untagged-disposition>
+
+						<protocol>lamp</protocol>
+						<untagged-disposition>forward</untagged-disposition>
+					</protocol-disposition>
+				</l2cp-profile>
+			</l2cp-profiles>
+		</config>
+	</edit-config>"
+
+
+	]
+}

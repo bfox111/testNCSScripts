@@ -1,0 +1,29 @@
+{
+"commands": [
+	"<edit-config>
+		<target>
+			<running/>
+		</target>
+		<default-operation>merge</default-operation>
+		<test-option>set</test-option>
+		<config>
+			<logical-ports xmlns=\"urn:ciena:params:xml:ns:yang:ciena-pn::ciena-mef-logical-port\">
+				<logical-port>
+					<name>7</name>
+					<binding xmlns:nc=\"urn:ietf:params:xml:ns:netconf:base:1.0\" nc:operation=\"remove\"/>
+				</logical-port>
+			</logical-ports>
+			<interfaces xmlns=\"http://openconfig.net/yang/interfaces\">
+				<interface>
+					<name>7</name>
+					<config>
+						<offload-activate xmlns=\"http://ciena.com/ns/yang/ciena-openconfig-if-ethernet-port\">true</offload-activate>
+					</config>
+				</interface>
+			</interfaces>
+		</config>
+	</edit-config>"
+
+
+	]
+}

@@ -1,0 +1,11 @@
+{
+"commands": [
+
+"virtual-switch ethernet remove vs vs-${CIRCUIT_NAME} port ${UNI_PORT}\n",
+"port unset port ${UNI_PORT} untagged-data-vs untagged-ctrl-vs \n",
+"traffic-profiling standard-profile delete port ${UNI_PORT} profile BW_PROF_${UNI_PORT} \n", 
+	    	"configuration save\n"
+]
+}
+
+

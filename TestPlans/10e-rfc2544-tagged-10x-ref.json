@@ -1,0 +1,65 @@
+{
+    "tests": [
+        {
+          "testName": "RFC2544 Test",
+          "testDescription": "Setup RFC2544 test between PE-10x and PE-6x.  PE-10x is the reflector.",
+          "testType": "SAT",
+
+          "customScripts": [
+              {
+                "deviceName": "PE-10x",
+                "cmdFile": "ReflectTaggedAndUntagged",
+                "scriptAttributes": {
+                  "UNI_PORT": "5",
+                  "FLOW_POINT": "FP_5_EVPL700"
+                }
+              },
+              {
+                "deviceName": "PE-6x",
+                "cmdFile": "RFC2544SetupTagged",
+                "scriptAttributes": {
+                  "UNI_PORT": "5",
+                  "BANDWIDTH_MBS": "1000",
+                  "DEST_NODE": "PE-10x",
+                  "DEST_MAC": "SET_IN_CODE",
+                  "FLOW_PT_GEN_PORT": "FP_5_EVPL700",
+		              "CVLAN": "400"
+		}
+              }
+          ],
+          "sleepTime": 15,
+          "verificationCommands": {
+               "PE-6x": [
+                  "bench test show"
+              ],
+              "PE-10x": [
+                  "show sat entities"
+              ]
+          }
+      },
+              {
+          "testName": "Start RFC2544 Test",
+          "testDescription": "Start RFC2544 test between PE-10x and PE-6x.  PE-10x is the reflector.",
+          "testType": "SAT",
+
+          "customScripts": [
+              {
+                "deviceName": "PE-6x",
+                "cmdFile": "RFC2544Start",
+                "scriptAttributes": {
+              }
+              }
+          ],
+          "sleepTime": 45,
+          "verificationCommands": {
+              "PE-10x": [
+                  "sh sat test-instances test-instance genRFC2544 statistics"
+              ],
+              "PE-6x": [
+                  "bench test show name genRFC2544 statistics"
+              ]
+          }
+      }
+     
+    ]
+ }

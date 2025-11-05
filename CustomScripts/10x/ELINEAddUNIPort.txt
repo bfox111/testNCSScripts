@@ -1,0 +1,62 @@
+{
+"commands": [
+"
+<edit-config>
+	<target>
+		<running/>
+	</target>
+	<default-operation>merge</default-operation>
+	<test-option>test-then-set</test-option>
+	<config>
+			<meter-profiles xmlns=\"urn:ciena:params:xml:ns:yang:ciena-pn::ciena-mef-meter-profile\">
+			  <meter-profile>
+				    <name>BW_PROF_${UNI_PORT}</name>
+				    <cir>${MBPS_CIR}000</cir>
+				    <eir>0</eir>
+				    <cbs>256</cbs>
+				    <ebs>0</ebs>
+			  </meter-profile>
+			</meter-profiles>
+
+		<fps xmlns=\"urn:ciena:params:xml:ns:yang:ciena-pn:ciena-mef-fp\">
+				<fp>
+					<name>FP_${FIRST_UNI_PORT}_${CIRCUIT_NAME}</name>
+					<pfg-group>leaf</pfg-group>
+				</fp>
+				<fp>
+				    <name>FP_${UNI_PORT}_${CIRCUIT_NAME}</name>
+				    <fd-name>FD_${CIRCUIT_NAME}</fd-name>
+				    <logical-port>${UNI_PORT}</logical-port>
+					<pfg-group>leaf</pfg-group>
+				    <ingress-l2-transform>
+				      <ingress-name>ingressTransform</ingress-name>
+				      <vlan-stack>
+				        <tag>1</tag>
+				        <push-pcp>map</push-pcp>
+				        <push-vid>${SVLAN}</push-vid>
+				      </vlan-stack>
+				    </ingress-l2-transform>
+				    <egress-l2-transform>
+				      <egress-name>egressTransform</egress-name>
+				      <vlan-stack>
+				        <tag>1</tag>
+				        <pop-type/>
+				      </vlan-stack>
+				    </egress-l2-transform>
+				    <classifier-list>CLASSIFIER_4096</classifier-list>
+				    <classifier-list>CLASSIFIER_4097</classifier-list>
+				    <classifier-list>CLASSIFIER_l2cp</classifier-list>
+				    <classifier-list-precedence>100</classifier-list-precedence>
+				    <meter-profile>BW_PROF_${UNI_PORT}</meter-profile>
+				    <stats-collection>on</stats-collection>
+				  </fp>
+				</fps>
+
+
+
+		</config>
+	</edit-config>"
+
+	]
+}
+

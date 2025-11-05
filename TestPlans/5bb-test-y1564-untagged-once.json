@@ -1,0 +1,29 @@
+{
+    "tests": [
+                    {
+          "testName": "Start Y1564 Test A THIRD TIME",
+          "testDescription": "Start Y.1564 test between CE-1 and CE-2.  CE-2 is the reflector.",
+          "testType": "SAT",
+
+          "customScripts": [
+              {
+                "deviceName": "CE-1",
+                "cmdFile": "Y1564StartUntagged",
+                "scriptAttributes": {
+              }
+              }
+          ],
+          "sleepTime": 45,
+          "verificationCommands": {
+              "CE-2": [
+                  "sh sat test-instances statistics"
+              ],
+              "CE-1": [
+                  "sh sat test-instances test-instance genY1564Untagged statistics"
+              ]
+          }
+      }
+
+     
+    ]
+ }

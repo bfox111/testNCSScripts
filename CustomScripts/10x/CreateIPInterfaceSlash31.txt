@@ -1,0 +1,74 @@
+{
+"commands": [
+"
+	<edit-config>
+		<target>
+			<running/>
+		</target>
+		<default-operation>merge</default-operation>
+		<test-option>test-then-set</test-option>
+		<config>
+			<classifiers xmlns=\"urn:ciena:params:xml:ns:yang:ciena-pn::ciena-mef-classifier\">
+				<classifier>
+					<name>tag-any</name>
+					<filter-entry>
+						<filter-parameter xmlns:classifier=\"urn:ciena:params:xml:ns:yang:ciena-pn::ciena-mef-classifier\">classifier:vtag-stack</filter-parameter>
+						<vtags>
+							<tag>1</tag>
+						</vtags>
+					</filter-entry>
+				</classifier>
+				<classifier>
+					<name>UNTAGGED</name>
+					<filter-entry>
+						<filter-parameter xmlns:classifier=\"urn:ciena:params:xml:ns:yang:ciena-pn::ciena-mef-classifier\">classifier:vtag-stack</filter-parameter>
+						<untagged-exclude-priority-tagged>false</untagged-exclude-priority-tagged>
+					</filter-entry>
+				</classifier>
+			</classifiers>
+			<fds xmlns=\"urn:ciena:params:xml:ns:yang:ciena-pn:ciena-mef-fd\">
+				<fd>
+					<name>${INTF_NAME}</name>
+					<mode>vpls</mode>
+				</fd>
+			</fds>
+			<fps xmlns=\"urn:ciena:params:xml:ns:yang:ciena-pn:ciena-mef-fp\">
+				<fp>
+					<name>${INTF_NAME}</name>
+					<fd-name>${INTF_NAME}</fd-name>
+					<logical-port>${PORT}</logical-port>
+					<classifier-list>UNTAGGED</classifier-list>
+					<classifier-list-precedence>7</classifier-list-precedence>
+					<stats-collection>on</stats-collection>
+				</fp>
+			</fps>
+			<interfaces xmlns=\"http://openconfig.net/yang/interfaces\">
+				<interface>
+					<name>${INTF_NAME}</name>
+					<config>
+						<name>${INTF_NAME}</name>
+						<admin-status xmlns=\"http://ciena.com/ns/yang/ciena-openconfig-interfaces\">true</admin-status>
+						<type xmlns=\"http://ciena.com/ns/yang/ciena-openconfig-interfaces\">point-to-point</type>
+						<underlay-binding xmlns=\"http://ciena.com/ns/yang/ciena-underlay-binding\">
+							<config>
+								<fd>${INTF_NAME}</fd>
+							</config>
+						</underlay-binding>
+					</config>
+					<ipv4 xmlns=\"http://ciena.com/ns/yang/ciena-openconfig-if-ip\">
+						<addresses>
+							<address>
+								<ip>${IP_ADDR}</ip>
+								<config>
+									<ip>${IP_ADDR}</ip>
+									<prefix-length>${IP_PRX_LEN}</prefix-length>
+								</config>
+							</address>
+						</addresses>
+					</ipv4>
+				</interface>
+			</interfaces>
+		</config>
+	</edit-config>"
+	]
+}

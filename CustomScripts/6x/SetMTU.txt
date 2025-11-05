@@ -1,0 +1,8 @@
+{
+"commands": [
+
+"port set port 1-3 max-frame-size ${MTU}\n",
+
+"config save\n"
+]
+}

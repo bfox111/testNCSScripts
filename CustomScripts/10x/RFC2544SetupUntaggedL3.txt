@@ -1,0 +1,44 @@
+{
+"commands": [
+	"<edit-config>
+		<target>
+			<running/>
+		</target>
+		<config>
+			<sat xmlns=\"http://www.ciena.com/ns/yang/ciena-sat\">
+
+  <sat-global>
+    <admin-state>enabled</admin-state>
+  </sat-global>
+  <entity>
+    <name>GENERATOR</name>
+    <port>${UNI_PORT}</port>
+    <role>generator</role>
+    <admin-state>enabled</admin-state>
+  </entity>
+  <test-profile>
+    <name>genProfileUntagged</name>
+    <bandwidth>${BANDWIDTH_MBS}</bandwidth>
+    <excess-bandwidth>${BANDWIDTH_MBS}</excess-bandwidth>
+    <duration>t15min</duration>
+    <dst-mac>${DST_MAC}</dst-mac>
+    <dscp>0</dscp>
+    <src-addr>${SRC_IP}</src-addr>
+    <dst-addr>${DST_IP}</dst-addr>
+    <rfc2544-suite>true</rfc2544-suite>
+  </test-profile>
+  <test-instance>
+    <name>genRFC2544</name>
+    <flow-point-id>${FP}</flow-point-id>
+    <profile>genProfileUntagged</profile>
+    <untagged>true</untagged>
+    <admin-state>enabled</admin-state>
+  </test-instance>
+</sat>
+		</config>
+	</edit-config>"
+
+
+	]
+}
+

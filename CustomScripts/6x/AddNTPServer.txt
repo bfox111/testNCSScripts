@@ -1,0 +1,9 @@
+{
+"commands": [
+
+
+"ntp client add server ${NTP_SERVER}\n",
+
+	    	"configuration save\n"
+]
+}

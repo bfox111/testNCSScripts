@@ -1,0 +1,63 @@
+{
+    "tests": [
+      {
+          "testName": "Disable Y1564 ",
+          "testDescription": "Disable Y.1564 test between PE-6x and PE-10x.  PE-6x is the reflector.",
+          "testType": "SAT",
+
+          "customScripts": [
+              {
+                "deviceName": "PE-10x",
+                "cmdFile": "DisableY1564Untagged",
+                "scriptAttributes": {
+                  "UNI_PORT": "5"
+              }
+              }
+
+          ],
+          "sleepTime": 1,
+          "verificationCommands": {
+              "PE-6x": [
+                  "bench reflector show ",
+                  "bench test show"
+              ],
+              "PE-10x": [
+                  "show sat test-instances",
+                  "show sat entities"
+              ]
+          }
+      },
+      {
+          "testName": "Delete Y1564 ",
+          "testDescription": "Delete Y.1564 test between PE-6x and PE-10x.  PE-6x is the reflector.",
+          "testType": "SAT",
+
+          "customScripts": [
+              {
+                "deviceName": "PE-6x",
+                "cmdFile": "DeleteUntaggedReflector",
+                "scriptAttributes": {
+              }
+              },
+                            {
+                "deviceName": "PE-10x",
+                "cmdFile": "Y1564DeleteUntagged",
+                "scriptAttributes": {
+              }
+              }
+
+          ],
+          "sleepTime": 1,
+          "verificationCommands": {
+             "PE-6x": [
+                  "bench reflector show ",
+                  "bench test show"
+              ],
+              "PE-10x": [
+                  "show sat test-instances",
+                  "show sat entities"
+              ]
+          }
+      }
+    ]
+ }

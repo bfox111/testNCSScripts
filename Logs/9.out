@@ -1,0 +1,467 @@
+Device 'PE-6x' mac addr is '18:92:a4:c9:f9:68'
+Device 'PE-10x' mac addr is '94:43:4d:99:1a:83'
+Device 'CE-1' mac addr is 'e0:9b:27:f0:76:23'
+Device 'CE-2' mac addr is 'e0:9b:27:9e:2f:43'
+{'PE-6x': {'attributes': {'neName': 'PE-6x', 'neType': '3928', 'typeGroup': 'PN6x'}, 'ipAddress': '10.92.44.44', 'macAddress': '18:92:a4:c9:f9:68'}, 'PE-10x': {'attributes': {'neName': 'PE-10x', 'neType': '5164', 'typeGroup': 'PN10x'}, 'ipAddress': '10.92.44.39', 'macAddress': '94:43:4d:99:1a:83'}, 'CE-1': {'attributes': {'neName': 'CE-1', 'neType': '3984', 'typeGroup': 'PN10x'}, 'ipAddress': '10.92.44.48', 'macAddress': 'e0:9b:27:f0:76:23'}, 'CE-2': {'attributes': {'neName': 'CE-2', 'neType': '3984', 'typeGroup': 'PN10x'}, 'ipAddress': '10.92.44.13', 'macAddress': 'e0:9b:27:9e:2f:43'}}
+
+=== Executing Test Cases ===
+
+--- Executing Test Case 1 ---
+
+=== Test Case ===
+Test Name: VLINE-CFM
+Description: Setup VLINE with CFM between PE-6x and PE-10x.  Run Y1564 test. PE-6x is the reflector.
+Test Type: VLINE-CFM
+
+--- Custom Scripts ---
+Device Name: PE-6x
+Command File: VLINEwithCFM
+Script Attributes:
+Script VLINEwithCFM executed successfully!
+Device Name: PE-10x
+Command File: VLINEwithCFM
+Script Attributes:
+Script VLINEwithCFM executed successfully!
+
+Sleep Time: 15 seconds
+
+--- Verification Commands ---
+Device: PE-6x
+  Commands: ['vlan show', 'cfm delay show', 'cfm servi show']
+Executing: vlan show
+Output:
+
++------------ VLAN GLOBAL CONFIGURATION ------------+
+| Parameter         | Value                         |
++-------------------+---------------+---------------+
+| Inner TPID State  | Disabled                      |
+|                   |                               |
+| Field             | Admin         | Oper          |
++-------------------+---------------+---------------+
+| Inner TPID        | 8100          | 8100          |
++-------------------+---------------+---------------+
+
++----+--------------------------------+------------+
+|VLAN|                                |         111|
+| ID | VLAN Name                Ports |123456789012|
++----+--------------------------------+------------+
+|   1|Default                         |xxxxxxxxxxxx|
+| 127|Mgmt                            |xxxxxxxxxxxx|
++----+--------------------------------+------------+
+
++----------------------------- CROSS CONNECTION TABLE ------------------------------+
+| OVID | IVID |                           Port-A |                           Port-B |
++------+------+----------------------------------+----------------------------------+
+| No Entry Found                                                                    |
++------+------+----------------------------------+----------------------------------+
+
+Executing: cfm delay show
+Output:
++------------------------------------------ MEP DELAY MEASUREMENT MESSAGE INFORMATION -------------------------------------------+
+|                |Local|Remote           |Remote|          |          |     |     |               |               |Rep |         |
+|Service         |Mepid|Mac Address      |Mepid |  TestId  |Iteration | DMM | DMR |  Delay in us  | Jitter in us  |Time|   Acc   |
++----------------+-----+-----------------+------+----------+----------+-----+-----+---------------+---------------+----+---------+
+|No Entries                                                                                                                      |
++----------------+-----+-----------------+------+----------+----------+-----+-----+---------------+---------------+----+---------+
+Executing: cfm servi show
+Output:
+No CFM Services found
+Device: PE-10x
+  Commands: ['show flow', 'show cfm delay ']
+Executing: show flow
+Output:
++------------------------------------- FLOW POINT -------------------------------------+
+| Name         | Forwarding Domain Name | Logical Port | Admin State | Classifier List |
++--------------+------------------------+--------------+-------------+-----------------+
+| FP_4_VLINE88 | FD_VLINE88             | 4            | enabled     | CLASSIFIER_88   |
+| FP_5_VLINE88 | FD_VLINE88             | 5            | enabled     | CLASSIFIER_88   |
++--------------+------------------------+--------------+-------------+-----------------+
++------------------------------------ FLOW POINT STATISTICS -------------------------------------+
+| Name         | Rx Accepted Frames | Tx Forwarded Frames | Rx Yellow Frames | Rx Dropped Frames |
++--------------+--------------------+---------------------+------------------+-------------------+
+| FP_4_VLINE88 | 786                | 779                 | 0                | 0                 |
+| FP_5_VLINE88 | 0                  | 0                   | 0                | 0                 |
++--------------+--------------------+---------------------+------------------+-------------------+
++-------------------------------------------------- FLOW POINT STATE -------------------------------------------------+
+| Name         | PFG Operational State | EVPN FXC Locally Switched | Oper State | Oper Up Time     | Forwarding State |
++--------------+-----------------------+---------------------------+------------+------------------+------------------+
+| FP_4_VLINE88 | -                     | -                         | up         | 0 days,0h:0m:32s | -                |
+| FP_5_VLINE88 | -                     | -                         | up         | 0 days,0h:0m:32s | -                |
++--------------+-----------------------+---------------------------+------------+------------------+------------------+
+Executing: show cfm delay
+Output:
++----------------------------------------------------- CFM DELAY MEASUREMENT: CURRENT STATS ----------------------------------------------------+
+|       |         | Local | Session | Remote | Test |        | Elapsed |        |        | Suspect | Frame Delay  | IFDV         | FDR          |
+| MD ID | MA ID   | MEPID |  ID     | MEP    | ID   | Status | (cs)    | DMM Tx | DMR Rx | Status  | Two-Way (us) | Two-Way (us) | Two-Way (us) |
++-------+---------+-------+---------+--------+------+--------+---------+--------+--------+---------+--------------+--------------+--------------+
+| md3   | VLINE88 | 2     | 2       | 1      | 5    | active | 34175   | 342    | 342    | False   | Avg: 10      | Avg: 0       | Avg: 0       |
+|       |         |       |         |        |      |        |         |        |        |         | Min: 10      | Min: 0       | Max: 1       |
+|       |         |       |         |        |      |        |         |        |        |         | Max: 11      | Max: 1       |              |
++-------+---------+-------+---------+--------+------+--------+---------+--------+--------+---------+--------------+--------------+--------------+
+
+--- Executing Test Case 2 ---
+
+=== Test Case ===
+Test Name: Y1564 Test
+Description: Setup Y.1564 test between PE-6x and PE-10x.  PE-6x is the reflector.
+Test Type: SAT
+
+--- Custom Scripts ---
+Device Name: PE-6x
+Command File: ReflectAllVlans
+Script Attributes:
+Script ReflectAllVlans executed successfully!
+Device Name: PE-10x
+Command File: Y1564SetupOnceTagged
+Script Attributes:
+Script Y1564SetupOnceTagged executed successfully!
+
+Sleep Time: 15 seconds
+
+--- Verification Commands ---
+Device: PE-6x
+  Commands: ['bench test show', 'bench reflector show ']
+Executing: bench test show
+Output:
++------------------------- BENCHMARK Test Instances Configuration and State Info --------------------------+
+|      |                  |                  |               |                   |          State          |
+|  ID  |       Name       |     Profile      |   vtag-stack  |      DA MAC       |   Admin    |    Oper    |
++------+------------------+------------------+---------------+-------------------+------------+------------+
+|                                                                                                          |
++------+------------------+------------------+---------------+-------------------+------------+------------+
+Executing: bench reflector show
+Output:
++------------------------- BENCHMARK Reflector Entities Configuration and State Info -------------------------+
+|                                               |                    |                  |        State        |
+|                     Name                      |       Mode         |       Port       |  Admin   |   Oper   |
++-----------------------------------------------+--------------------+------------------+----------+----------+
+| No benchmark reflector entity configured                                                                    |
++-----------------------------------------------+--------------------+------------------+----------+----------+
+Device: PE-10x
+  Commands: ['show sat entities', 'show sat test-instances']
+Executing: show sat entities
+Output:
++----------------------------------------- SAT ENTITY ----------------------------------------+
+| Parameter                      | Value                                                      |
++--------------------------------+------------------------------------------------------------+
+| Entity-Name                    | GENERATOR                                                  |
+| Port                           | 5                                                          |
+| Role                           | Generator                                                  |
+| Mode                           | In-Service                                                 |
+| Admin-State                    | Enabled                                                    |
+| Test-Direction                 | Ingress                                                    |
+| Test-Interface                 | Flow-Point                                                 |
+| Collector-Mac-Validation       | Dst-Mac-Only                                               |
+| Id                             | 1                                                          |
+| Port-Type                      | Regular                                                    |
+| Oper-State                     | Disabled                                                   |
+| Slot-Id                        | 0                                                          |
+| Local-Mac                      | 94:43:4D:99:1A:83                                          |
+| Gen-Max-Emix-Length            | 32                                                         |
+| Gen-Seqnum-Field-Length        | 4                                                          |
+| Engine-Bandwidth               | 200000Mbps                                                 |
+| Time-Stamp-Type                | Ntp                                                        |
+| Num-Test-Instances-Configured  | 1                                                          |
+| Num-Test-Instances-Enabled     | 1                                                          |
+| Gen-Num-Test-Instances-Running | 0                                                          |
+| Bw-Available                   | 1000Mbps                                                   |
+| Gen-Bw-Used-By-Running-Tests   | 0Mbps                                                      |
+| Available-Hw-Sessions          | 63                                                         |
+| Allocated-Hw-Sessions          | 1                                                          |
+| Engine-Type                    | Switch-Sat-Block                                           |
+| Gen-Tests-Supported            | Throughput Frameloss Latency Pdv Rfc2544-Suite Y1564-Suite |
+| Gen-Max-Unique-Emix-Char       | 8                                                          |
++--------------------------------+------------------------------------------------------------+
+Executing: show sat test-instances
+Output:
++------------------ SAT TEST INSTANCES -----------------+
+| Parameter                      | Value                |
++--------------------------------+----------------------+
+| Test-Instance-Name             | genY1564Tagged       |
+| Flow-Point-Id                  | FP_5_VLINE88         |
+| Profile                        | genY1564Tagged       |
+| C-Vid                          | 88                   |
+| Untagged                       | False                |
+| Admin-State                    | enabled              |
+| Id                             | 1                    |
+| Current-Interval               | 0                    |
+| Total-Intervals                | Unknown              |
+| Last-Iteration-Start-Timestamp | 0000-00-00T00:00:00Z |
+| Assoc-Entity                   | GENERATOR            |
+| Oper-State                     | disabled             |
+| Active-C-Vid                   | 88                   |
+| Active-Dst-Mac                 | 18:92:a4:c9:f9:68    |
+| Active-Start-Bw                | 0Mbps                |
+| Required-Start-Bw              | 1000.0Mbps           |
+| Active-Emix                    | LP-Y1564             |
+| Test-Start-Timestamp           | 0000-00-00T00:00:00Z |
+| Test-End-Timestamp             | 0000-00-00T00:00:00Z |
+| Session Keys:                  |                      |
+|                     Session-Id | 0                    |
+|                        Slot-Id | 1                    |
+|                        Dst-Mac | 18:92:a4:c9:f9:68    |
+|                          S-Vid | 0                    |
+|                          S-Pcp | 0                    |
+|                        S-Color | green                |
+|                          C-Vid | 88                   |
+|                          C-Pcp | 0                    |
+|                        C-Color | green                |
+|                       Untagged | 0                    |
+|                           Mask | 11110001             |
+|                                |                      |
+| Profile running configuration: |                      |
+|      Interval                  | tCompletion          |
+|      Duration                  | tOnce                |
+|      Sampling-Interval         | 1                    |
+|      Max-Samples               | 10                   |
+|      Max-Searches              | 7                    |
+|      Bandwidth                 | 1000Mbps             |
+|      Excess-Bandwidth          | 1000Mbps             |
+|      Frameloss-Start-Bw        | maximum-throughput   |
+|      Frame-Size-List           | None                 |
+|      Emix-Sequence             | LP-Y1564             |
+|      Kpi-Profile               | LP-Y1564             |
+|      BW-Alloc-Profile          | Not configured       |
+|      Vid-Validation            | True                 |
+|      Color-Validation          | True                 |
+|      PCP-Validation            | True                 |
+|      Inner-Vid-Validation      | True                 |
+|      VLAN-TPID                 | 0x8100               |
+|      VLAN-Encapsulation        | dot1Q                |
+|      Pdu-Type                  | ethernet             |
+|      Destination MAC           | 18:92:a4:c9:f9:68    |
++--------------------------------+----------------------+
+
+--- Executing Test Case 3 ---
+
+=== Test Case ===
+Test Name: Start Y1564 Test
+Description: Start Y.1564 test between PE-6x and PE-10x.  PE-6x is the reflector.
+Test Type: SAT
+
+--- Custom Scripts ---
+Device Name: PE-10x
+Command File: Y1564StartTagged
+Script Attributes:
+Script Y1564StartTagged executed successfully!
+
+Sleep Time: 45 seconds
+
+--- Verification Commands ---
+Device: PE-6x
+  Commands: ['bench reflector show name REFLECT statistics']
+Executing: bench reflector show name REFLECT statistics
+Output:
+SHELL PARSER FAILURE: 'REFLECT' - no matching entry found
+Device: PE-10x
+  Commands: ['sh sat test-instances test-instance genY1564Tagged statistics']
+Executing: sh sat test-instances test-instance genY1564Tagged statistics
+Output:
++------------------------------------- SAT TEST INSTANCES STATISTICS & RESULTS --------------------------------------+
+|                                |                      |     |       |      |      |      |            |            |
++--------------------------------+----------------------+-----+-------+------+------+------+------------+------------+
+| Test-Instance-Name             | genY1564Tagged       |     |       |      |      |      |            |            |
+| Associated-Entity-Name         | GENERATOR            |     |       |      |      |      |            |            |
+| Associated-Test-Profile-Name   | genY1564Tagged       |     |       |      |      |      |            |            |
+| Test-Direction                 | ingress              |     |       |      |      |      |            |            |
+| Test-Bandwidth                 | 1000Mbps             |     |       |      |      |      |            |            |
+| Excess Bandwidth               | 1000Mbps             |     |       |      |      |      |            |            |
+| Active destination MAC         | 18:92:a4:c9:f9:68    |     |       |      |      |      |            |            |
+| Test-Packet Encapsulation Type | dot1Q                |     |       |      |      |      |            |            |
+| Active vTag Stack              | *:88                 |     |       |      |      |      |            |            |
+| Last Test Start timestamp      | 2025-11-04T19:53:46Z |     |       |      |      |      |            |            |
+| Test End timestamp             | 2025-11-04T19:54:01Z |     |       |      |      |      |            |            |
+| Port Type                      | regular              |     |       |      |      |      |            |            |
+| Throughput Result Mode         | payload              |     |       |      |      |      |            |            |
+| Test interval                  | tCompletion          |     |       |      |      |      |            |            |
+| Test duration                  | tOnce                |     |       |      |      |      |            |            |
+| U Frame Size                   | 9000                 |     |       |      |      |      |            |            |
++--------------------------------+----------------------+-----+-------+------+------+------+------------+------------+
+| Throughput Results             | Emix                 | PCP | Color | Min  | Avg  | Max  | KPI Result | Iterations |
+|                                |                      |     |       | Mbps | Mbps | Mbps |            |            |
++--------------------------------+----------------------+-----+-------+------+------+------+------------+------------+
+|                                | LP-Y1564             | 0   | green | 0.00 | 0.00 | 0.00 | fail       | 1          |
++--------------------------------+----------------------+-----+-------+------+------+------+------------+------------+
+| No latency results available   | -                    | -   | -     | -    | -    | -    | -          | -          |
++--------------------------------+----------------------+-----+-------+------+------+------+------------+------------+
+| No PDV results available       | -                    | -   | -     | -    | -    | -    | -          | -          |
++--------------------------------+----------------------+-----+-------+------+------+------+------------+------------+
+| No frameloss results available | -                    | -   | -     | -    | -    | -    | -          | -          |
++--------------------------------+----------------------+-----+-------+------+------+------+------------+------------+
+| No outage results available    | -                    | -   | -     | -    | -    | -    | -          | -          |
++--------------------------------+----------------------+-----+-------+------+------+------+------------+------------+
+| Counters                       |                      |     |       |      |      |      |            |            |
++--------------------------------+----------------------+-----+-------+------+------+------+------------+------------+
+|    Rx-Pkts                     | 0                    |     |       |      |      |      |            |            |
+|    Rx-Ooo-Pkts                 | 0                    |     |       |      |      |      |            |            |
+|    Rx-Errored-Pkts             | 0                    |     |       |      |      |      |            |            |
+|    Tx-Pkts                     | 12001                |     |       |      |      |      |            |            |
++--------------------------------+----------------------+-----+-------+------+------+------+------------+------------+
+
+--- Executing Test Case 4 ---
+
+=== Test Case ===
+Test Name: Disable Y1564 
+Description: Disable Y.1564 test between PE-6x and PE-10x.  PE-x6x is the reflector.
+Test Type: SAT
+
+--- Custom Scripts ---
+Device Name: PE-10x
+Command File: DisableY1564Tagged
+Script Attributes:
+Script DisableY1564Tagged executed successfully!
+
+Sleep Time: 1 seconds
+
+--- Verification Commands ---
+Device: PE-6x
+  Commands: ['bench reflector show']
+Executing: bench reflector show
+Output:
++------------------------- BENCHMARK Reflector Entities Configuration and State Info -------------------------+
+|                                               |                    |                  |        State        |
+|                     Name                      |       Mode         |       Port       |  Admin   |   Oper   |
++-----------------------------------------------+--------------------+------------------+----------+----------+
+| No benchmark reflector entity configured                                                                    |
++-----------------------------------------------+--------------------+------------------+----------+----------+
+Device: PE-10x
+  Commands: ['show sat entities', 'show sat test-instances']
+Executing: show sat entities
+Output:
++----------------------------------------- SAT ENTITY ----------------------------------------+
+| Parameter                      | Value                                                      |
++--------------------------------+------------------------------------------------------------+
+| Entity-Name                    | GENERATOR                                                  |
+| Port                           | 5                                                          |
+| Role                           | Generator                                                  |
+| Mode                           | In-Service                                                 |
+| Admin-State                    | Enabled                                                    |
+| Test-Direction                 | Ingress                                                    |
+| Test-Interface                 | Flow-Point                                                 |
+| Collector-Mac-Validation       | Dst-Mac-Only                                               |
+| Id                             | 1                                                          |
+| Port-Type                      | Regular                                                    |
+| Oper-State                     | Disabled                                                   |
+| Slot-Id                        | 0                                                          |
+| Local-Mac                      | 94:43:4D:99:1A:83                                          |
+| Gen-Max-Emix-Length            | 32                                                         |
+| Gen-Seqnum-Field-Length        | 4                                                          |
+| Engine-Bandwidth               | 200000Mbps                                                 |
+| Time-Stamp-Type                | Ntp                                                        |
+| Num-Test-Instances-Configured  | 1                                                          |
+| Num-Test-Instances-Enabled     | 1                                                          |
+| Gen-Num-Test-Instances-Running | 0                                                          |
+| Bw-Available                   | 1000Mbps                                                   |
+| Gen-Bw-Used-By-Running-Tests   | 0Mbps                                                      |
+| Available-Hw-Sessions          | 63                                                         |
+| Allocated-Hw-Sessions          | 1                                                          |
+| Engine-Type                    | Switch-Sat-Block                                           |
+| Gen-Tests-Supported            | Throughput Frameloss Latency Pdv Rfc2544-Suite Y1564-Suite |
+| Gen-Max-Unique-Emix-Char       | 8                                                          |
++--------------------------------+------------------------------------------------------------+
+Executing: show sat test-instances
+Output:
++------------------ SAT TEST INSTANCES -----------------+
+| Parameter                      | Value                |
++--------------------------------+----------------------+
+| Test-Instance-Name             | genY1564Tagged       |
+| Flow-Point-Id                  | FP_5_VLINE88         |
+| Profile                        | genY1564Tagged       |
+| C-Vid                          | 88                   |
+| Untagged                       | False                |
+| Admin-State                    | enabled              |
+| Id                             | 1                    |
+| Current-Interval               | 1                    |
+| Total-Intervals                | 1                    |
+| Last-Iteration-Start-Timestamp | 2025-11-04T19:53:46Z |
+| Assoc-Entity                   | GENERATOR            |
+| Oper-State                     | disabled             |
+| Active-C-Vid                   | 88                   |
+| Active-Dst-Mac                 | 18:92:a4:c9:f9:68    |
+| Active-Start-Bw                | 1000Mbps             |
+| Required-Start-Bw              | 1000.0Mbps           |
+| Active-Emix                    | LP-Y1564             |
+| Test-Start-Timestamp           | 2025-11-04T19:53:46Z |
+| Test-End-Timestamp             | 2025-11-04T19:54:01Z |
+| Session Keys:                  |                      |
+|                     Session-Id | 0                    |
+|                        Slot-Id | 1                    |
+|                        Dst-Mac | 18:92:a4:c9:f9:68    |
+|                          S-Vid | 0                    |
+|                          S-Pcp | 0                    |
+|                        S-Color | green                |
+|                          C-Vid | 88                   |
+|                          C-Pcp | 0                    |
+|                        C-Color | green                |
+|                       Untagged | 0                    |
+|                           Mask | 11110001             |
+|                                |                      |
+| Profile running configuration: |                      |
+|      Interval                  | tCompletion          |
+|      Duration                  | tOnce                |
+|      Sampling-Interval         | 1                    |
+|      Max-Samples               | 10                   |
+|      Max-Searches              | 7                    |
+|      Bandwidth                 | 1000Mbps             |
+|      Excess-Bandwidth          | 1000Mbps             |
+|      Frameloss-Start-Bw        | maximum-throughput   |
+|      Frame-Size-List           | None                 |
+|      Emix-Sequence             | LP-Y1564             |
+|      Kpi-Profile               | LP-Y1564             |
+|      BW-Alloc-Profile          | Not configured       |
+|      Vid-Validation            | True                 |
+|      Color-Validation          | True                 |
+|      PCP-Validation            | True                 |
+|      Inner-Vid-Validation      | True                 |
+|      VLAN-TPID                 | 0x8100               |
+|      VLAN-Encapsulation        | dot1Q                |
+|      Pdu-Type                  | ethernet             |
+|      Destination MAC           | 18:92:a4:c9:f9:68    |
++--------------------------------+----------------------+
+
+--- Executing Test Case 5 ---
+
+=== Test Case ===
+Test Name: Delete Y1564 
+Description: Delete Y.1564 test between PE-6x and PE-10x.  PE-6x is the reflector.
+Test Type: SAT
+
+--- Custom Scripts ---
+Device Name: PE-6x
+Command File: DeleteAllVlansReflector
+Script Attributes:
+Script DeleteAllVlansReflector executed successfully!
+Device Name: PE-10x
+Command File: Y1564DeleteTagged
+Script Attributes:
+Script Y1564DeleteTagged executed successfully!
+
+Sleep Time: 3 seconds
+
+--- Verification Commands ---
+Device: PE-6x
+  Commands: ['bench test show', 'bench reflector show ']
+Executing: bench test show
+Output:
++------------------------- BENCHMARK Test Instances Configuration and State Info --------------------------+
+|      |                  |                  |               |                   |          State          |
+|  ID  |       Name       |     Profile      |   vtag-stack  |      DA MAC       |   Admin    |    Oper    |
++------+------------------+------------------+---------------+-------------------+------------+------------+
+|                                                                                                          |
++------+------------------+------------------+---------------+-------------------+------------+------------+
+Executing: bench reflector show
+Output:
++------------------------- BENCHMARK Reflector Entities Configuration and State Info -------------------------+
+|                                               |                    |                  |        State        |
+|                     Name                      |       Mode         |       Port       |  Admin   |   Oper   |
++-----------------------------------------------+--------------------+------------------+----------+----------+
+| No benchmark reflector entity configured                                                                    |
++-----------------------------------------------+--------------------+------------------+----------+----------+
+Device: PE-10x
+  Commands: ['show sat entities', 'show sat test-instances']
+Executing: show sat entities
+Output:
+There are no SAT entity configured
+Executing: show sat test-instances
+Output:
+There are no SAT test instances configured

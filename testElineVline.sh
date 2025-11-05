@@ -1,0 +1,11 @@
+python3.10 executeTestPlan.py 10.75.1.219 TestPlans/0-testplan-setup.json > Logs/0.out
+python3.10 executeTestPlan.py 10.75.1.219 TestPlans/1-test-eline-vline.json > Logs/1.out
+python3.10 executeTestPlan.py 10.75.1.219 TestPlans/2-test-y1564-untagged-once.json > Logs/2.out
+python3.10 executeTestPlan.py 10.75.1.219 TestPlans/3-test-delete-y1564-untagged-once.json > Logs/3.out
+python3.10 executeTestPlan.py 10.75.1.219 TestPlans/4-test-y1564-tagged-once.json > Logs/4.out
+python3.10 executeTestPlan.py 10.75.1.219 TestPlans/5-test-delete-y1564-tagged-once.json > Logs/5.out
+python3.10 executeTestPlan.py 10.75.1.219 TestPlans/5a-test-add-uni-to-eline.json > Logs/5a.out
+python3.10 executeTestPlan.py 10.75.1.219 TestPlans/5b-test-y1564-untagged-once.json > Logs/5b.out
+python3.10 executeTestPlan.py 10.75.1.219 TestPlans/5c-test-delete-y1564-untagged-once.json > Logs/5c.out
+python3.10 executeTestPlan.py 10.75.1.219 TestPlans/5d-test-delete-uni-added-to-eline.json > Logs/5d.out
+python3.10 executeTestPlan.py 10.75.1.219 TestPlans/6-test-delete-eline-vline.json > Logs/6.out

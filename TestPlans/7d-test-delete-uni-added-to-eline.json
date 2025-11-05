@@ -1,0 +1,42 @@
+{
+    "tests": [
+
+            {
+          "testName": "Delete UNI Port added to ELINE ",
+          "testDescription": "Delete UNI port added to ELINE between PE-6x and PE-10x.  ",
+          "testType": "SAT",
+
+          "customScripts": [
+              {
+                "deviceName": "PE-10x",
+                "cmdFile": "RemoveUNIportFromELINE",
+                "scriptAttributes": {
+                  "UNI_PORT": "2",
+                  "CIRCUIT_NAME": "ELINE610"
+              }
+              },
+                            {
+                "deviceName": "PE-6x",
+                "cmdFile": "RemoveUNIportFromELINE",
+                "scriptAttributes": {
+                  "UNI_PORT": "2",
+                    "CIRCUIT_NAME": "ELINE610"
+
+            }
+              }
+
+          ],
+          "sleepTime": 3,
+          "verificationCommands": {
+              "PE-10x": [
+                  "show flow",
+                  "config compare source before target running"
+              ],
+              "PE-6x": [
+                  "config search string virtual"
+              ]
+          }
+      }
+     
+    ]
+ }

@@ -1,0 +1,6 @@
+{
+"commands": [
+		"port set port ${PORT} loopback on\n",
+	    	"configuration save\n"
+]
+}

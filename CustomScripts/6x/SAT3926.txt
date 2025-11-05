@@ -1,0 +1,6 @@
+{
+"commands": [
+		"chassis system-rsvd-port add port 4 feature oam-services\n",
+	    	"configuration save\n"
+]
+}

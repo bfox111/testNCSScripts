@@ -1,0 +1,47 @@
+{
+"commands": [
+	"<edit-config>
+		<target>
+			<running/>
+		</target>
+		<config>
+			<sat xmlns=\"http://www.ciena.com/ns/yang/ciena-sat\">
+
+  <sat-global>
+    <admin-state>enabled</admin-state>
+  </sat-global>
+  <entity>
+    <name>GENERATOR</name>
+    <port>${UNI_PORT}</port>
+    <role>generator</role>
+    <mode>in-service</mode>
+    <generator-h-frame-size>5000</generator-h-frame-size>
+    <admin-state>enabled</admin-state>
+  </entity>
+  <test-profile>
+    <name>genProfileTagged</name>
+    <bandwidth>${BANDWIDTH_MBS}</bandwidth>
+    <interval>t15min</interval>
+    <duration>t15min</duration>
+    <sampling-interval>100</sampling-interval>
+    <frame-size>5000</frame-size>
+    <encap-type>dot1Q</encap-type>
+    <c-vid>${CVLAN}</c-vid>
+    <dst-mac>${DEST_MAC}</dst-mac>
+    <rfc2544-suite>true</rfc2544-suite>
+  </test-profile>
+  <test-instance>
+    <name>genRFC2544</name>
+    <flow-point-id>${FLOW_PT_GEN_PORT}</flow-point-id>
+    <profile>genProfileTagged</profile>
+    <c-vid>${CVLAN}</c-vid>
+    <admin-state>enabled</admin-state>
+  </test-instance>
+</sat>
+		</config>
+	</edit-config>"
+
+
+	]
+}
+

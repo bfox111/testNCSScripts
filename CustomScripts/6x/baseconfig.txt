@@ -1,0 +1,35 @@
+{
+"commands": [
+"vlan remove vlan ports 1-10\n",
+"ntp-client add server ${NTP_SERVER}\n",
+"ntp-client set sync-change-notification on\n",
+"ntp-client set polling-interval 64\n",
+
+"syslog create collector  ${SYSLOG_SERVER} severity emergency,alert,critical,error,warning,notice,info,debug\n",
+
+"mstp disable\n",
+"cfm enable\n",
+"system shell set global-inactivity-timeout 60\n",
+
+"system xftp set mode ftp\n",
+"system xftp set connection-timeout 2\n",
+"system xftp set tftp-server ${TFTP_SERVER}\n",
+"system xftp set ftp-server ${FTP_SERVER} login-id ${FTP_USER} secret ${FTP_PASSWD}\n", 
+
+
+"snmp set location ${LOCATION}\n",
+"snmp set enhancement-link-up-down-trap enable\n",
+"snmp set agg-port-link-up-down-trap enable\n",
+
+"snmp create access-entry USER sec-model v2c sec-level noAuth read-view V12cView write-view V12cView\n",
+"snmp create target ${SNMP_SERVER_NAME} addr ${SNMP_SERVER} subnet-mask 255.255.255.255 param-name user1 retry-count 3 retry-timeout 1500\n",
+"snmp create target-param user1 sec-name public sec-model v1\n",
+
+"dhcp client disable\n",
+
+
+	    	"configuration save\n"
+]
+}
+
+

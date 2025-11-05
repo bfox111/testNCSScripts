@@ -1,0 +1,28 @@
+{
+"commands": [
+	"<edit-config>
+		<target>
+			<running/>
+		</target>
+		<default-operation>merge</default-operation>
+		<test-option>set</test-option>
+		<config>
+			<system xmlns=\"http://openconfig.net/yang/system\">
+				<ntp xmlns=\"http://www.ciena.com/ns/yang/ciena-ntp\">
+					<associations>
+						<remote-ntp-server>
+							<server-entry>
+								<address>10.92.44.130</address>
+								<admin-state>enabled</admin-state>
+							</server-entry>
+						</remote-ntp-server>
+					</associations>
+			<admin-state>enabled</admin-state>
+				</ntp>
+			</system>
+		</config>
+	</edit-config>"
+
+
+	]
+}

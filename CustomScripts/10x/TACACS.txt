@@ -1,0 +1,112 @@
+{
+"commands": [
+	"<edit-config>
+		<target>
+			<running/>
+		</target>
+		<default-operation>merge</default-operation>
+		<test-option>set</test-option>
+		<config>
+			<system xmlns=\"http://openconfig.net/yang/system\">
+				<aaa>
+					<server-groups>
+						<server-group>
+							<name>tacacsgroup</name>
+							<config>
+								<name>tacacsgroup</name>
+								<type xmlns:oc-aaa=\"http://openconfig.net/yang/aaa\">oc-aaa:TACACS</type>
+								<search-method xmlns=\"http://www.ciena.com/ns/yang/ciena-openconfig-aaa\">cached</search-method>
+							</config>							<name>tacacsgroup</name>
+							<servers>
+								<server>
+									<address>${TACACS_SERVER}</address>
+									<config>
+										<address>${TACACS_SERVER}</address>
+										<timeout>5</timeout>
+										<admin-state xmlns=\"http://www.ciena.com/ns/yang/ciena-openconfig-aaa\">enabled</admin-state>
+									</config>
+									<tacacs>
+										<config>
+											<port>49</port>
+											<secret-key>*</secret-key>
+										</config>
+									</tacacs>
+								</server>
+							</servers>
+						</server-group>
+
+					<authentication>
+						<config>
+							<authentication-method>tacacsgroup</authentication-method>
+							<authentication-method>AUTH_LOC</authentication-method>
+						</config>
+
+						<users>
+							<user>
+								<username>diag</username>
+								<config>
+									<username>diag</username>
+									<password xmlns=\"http://www.ciena.com/ns/yang/ciena-openconfig-system\">*</password>
+								</config>
+							</user>
+
+							<user>
+								<username>jules</username>
+								<config>
+									<username>jules</username>
+									<password xmlns=\"http://www.ciena.com/ns/yang/ciena-openconfig-system\">*</password>
+								</config>
+							</user>
+						</users>
+
+						<lockout-policy xmlns=\"http://www.ciena.com/ns/yang/ciena-openconfig-aaa\">
+							<config>
+								<fail-limit>3</fail-limit>
+								<lockout-time>15</lockout-time>
+							</config>
+						</lockout-policy>
+
+						<password-policy xmlns=\"http://www.ciena.com/ns/yang/ciena-openconfig-aaa\">
+							<config>
+								<disallow-dict-words>on</disallow-dict-words>
+								<disallow-username>on</disallow-username>
+								<min-length>8</min-length>
+								<min-numeric-chars>1</min-numeric-chars>
+								<min-special-chars>1</min-special-chars>
+								<min-uppercase-chars>1</min-uppercase-chars>
+							</config>
+						</password-policy>
+					</authentication>
+
+					<accounting>
+						<config>
+							<accounting-method>tacacsgroup</accounting-method>
+						</config>
+
+						<events>
+							<event>
+								<event-type>oc-aaa-types:AAA_ACCOUNTING_EVENT_LOGIN</event-type>
+								<config>
+									<event-type xmlns:oc-aaa-types=\"http://openconfig.net/yang/aaa/types\">oc-aaa-types:AAA_ACCOUNTING_EVENT_LOGIN</event-type>
+									<record>START_STOP</record>
+								</config>
+							</event>
+
+							<event>
+								<event-type>oc-aaa-types:AAA_ACCOUNTING_EVENT_COMMAND</event-type>
+								<config>
+									<event-type xmlns:oc-aaa-types=\"http://openconfig.net/yang/aaa/types\">oc-aaa-types:AAA_ACCOUNTING_EVENT_COMMAND</event-type>
+									<record>START_STOP</record>
+								</config>
+							</event>
+						</events>
+					</accounting>
+				</aaa>
+
+			</system>
+		</config>
+	</edit-config>"
+
+
+	]
+}

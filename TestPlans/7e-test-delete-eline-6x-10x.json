@@ -1,0 +1,49 @@
+{
+    "tests": [
+            {
+          "testName": "Delete ELINE ",
+          "testDescription": "Delete ELINE between PE-6x and PE-10x.  ",
+          "testType": "SAT",
+
+          "customScripts": [
+              {
+                "deviceName": "PE-10x",
+                "cmdFile": "DeleteELINE",
+                "scriptAttributes": {
+                  "UNI_PORT": "5",
+                  "SVLAN": "610",
+                  "CIRCUIT_NAME": "ELINE610",
+		              "MD_LEVEL": "5",
+                  "NNI_PORT": "4"
+              }
+              },
+                            {
+                "deviceName": "PE-6x",
+                "cmdFile": "DeleteELINE",
+                "scriptAttributes": {
+                  "UNI_PORT": "5",
+                  "SVLAN": "610",
+                  "CIRCUIT_NAME": "ELINE610",
+		              "MD_LEVEL": "5",
+                  "NNI_PORT": "11"
+            }
+              }
+
+          ],
+          "sleepTime": 3,
+          "verificationCommands": {
+              "PE-10x": [
+                  "show flow",
+                  "config compare source before target running"
+              ],
+              "PE-6x": [
+                  "virtual-circuit ethernet show",
+                  "traffic-prof stand show"
+              ]
+          } 
+      }
+
+
+     
+    ]
+ }

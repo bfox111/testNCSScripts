@@ -1,0 +1,11 @@
+{
+"commands": [
+	"benchmark create reflector name REFLECT port ${UNI_PORT}\n",
+	"benchmark reflector enable name REFLECT\n",
+	"benchmark enable\n",
+	"benchmark test create name refUntagged vlan-untagged-data\n",
+	"benchmark test enable name refUntagged\n",
+
+	    	"configuration save\n"
+]
+}

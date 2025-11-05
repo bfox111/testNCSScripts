@@ -1,0 +1,48 @@
+{
+    "tests": [
+            {
+          "testName": "Delete VLINE with CFM ",
+          "testDescription": "Delete VLINE with CFM test between PE-6x and PE-10x.",
+          "testType": "SAT",
+
+          "customScripts": [
+              {
+                "deviceName": "PE-6x",
+                "cmdFile": "DeleteVLINEwithCFM",
+                "scriptAttributes": {
+                  "SVLAN": "88",
+                  "NNI_PORT": "11",
+                  "UNI_PORT": "5",
+                  "CIRCUIT_NAME": "VLINE88",
+                  "SERVICE_NUM": "1"
+              }
+              },
+                            {
+                "deviceName": "PE-10x",
+                "cmdFile": "DeleteVLINEwithCFM",
+                "scriptAttributes": {
+                  "UNI_PORT": "5",
+                  "SVLAN": "88",
+                  "MD_LEVEL": "3",
+                  "CIRCUIT_NAME": "VLINE88",
+                  "NNI_PORT": "4"
+              }
+              }
+
+          ],
+          "sleepTime": 5,
+          "verificationCommands": {
+              "PE-6x": [
+                  "vlan show",
+                  "traffic-prof stand show"
+              ],
+              "PE-10x": [
+                  "show flow",
+                  "config compare source before target running"
+              ]
+          }
+      }
+
+     
+    ]
+ }

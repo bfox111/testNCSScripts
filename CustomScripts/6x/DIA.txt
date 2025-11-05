@@ -1,0 +1,24 @@
+{
+"commands": [
+"vlan create vlan ${SVLAN}\n",
+"vlan add vlan ${SVLAN} port ${NNI_PORT}\n",
+
+"virtual-circuit ethernet create vc vc-${CIRCUIT_NAME} vlan ${SVLAN}\n",
+"virtual-switch ethernet create vs  vs-${CIRCUIT_NAME} vc vc-${CIRCUIT_NAME}\n",
+"virtual-switch ethernet add vs vs-${CIRCUIT_NAME} port ${UNI_PORT}\n",
+
+"traffic-profiling enable\n",
+"traffic-profiling set meter-provisioning eir\n",
+
+"port set port ${NNI_PORT} acceptable-frame-type tagged-only\n",
+
+"traffic-profiling enable port ${UNI_PORT}\n",
+"traffic-profiling  set port ${UNI_PORT}  mode advanced\n",
+"port set port ${UNI_PORT}  acceptable-frame-type all\n",
+"port set port ${UNI_PORT} untagged-data-vs vs-${CIRCUIT_NAME} untagged-ctrl-vs vs-${CIRCUIT_NAME}\n",
+"traffic-profiling standard-profile create port ${UNI_PORT} profile 1 name BW_PROF_${UNI_PORT} cir ${MBPS_CIR}000 eir 0 cbs 256  ebs 0\n", 
+
+	"system shell set global-inactivity-timer off\n",
+	    	"configuration save\n"
+]
+}

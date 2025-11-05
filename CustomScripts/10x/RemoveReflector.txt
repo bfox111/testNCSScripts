@@ -1,0 +1,25 @@
+{
+"commands": [
+
+
+	"<edit-config>
+		<target>
+			<running/>
+		</target>
+		<config>
+			<sat xmlns=\"http://www.ciena.com/ns/yang/ciena-sat\">
+
+				<test-instance xmlns:nc=\"urn:ietf:params:xml:ns:netconf:base:1.0\" nc:operation=\"remove\">
+					<name>reflectSAT</name>
+				</test-instance>
+				<entity xmlns:nc=\"urn:ietf:params:xml:ns:netconf:base:1.0\" nc:operation=\"remove\">
+					<name>REFLECTOR</name>
+				</entity>
+
+			</sat>
+		</config>
+	</edit-config>"
+
+
+	]
+}

@@ -1,0 +1,11 @@
+{
+"commands": [
+"traffic-profiling standard-profile delete port ${UNI_PORT} profile BW_PROF_${UNI_PORT}_${SVLAN}\n", 
+
+"vlan remove vlan ${SVLAN} port ${NNI_PORT}\n",
+"vlan remove vlan ${SVLAN} port ${UNI_PORT}\n",
+"vlan delete vlan ${SVLAN}\n",
+
+	    	"configuration save\n"
+]
+}

@@ -1,0 +1,16 @@
+{
+"commands": [
+"vlan create vlan ${SVLAN}\n",
+"vlan add vlan ${SVLAN} port ${NNI_PORT}\n",
+"vlan add vlan ${SVLAN} port ${UNI_PORT}\n",
+
+"traffic-profiling enable\n",
+"traffic-profiling set meter-provisioning eir\n",
+
+"traffic-profiling enable port ${UNI_PORT}\n",
+"traffic-profiling  set port ${UNI_PORT}  mode advanced\n",
+"traffic-profiling standard-profile create port ${UNI_PORT} profile ${SERVICE_NUM} name BW_PROF_${UNI_PORT}_${SVLAN} cir ${MBPS_CIR}000 eir 0 cbs 256  ebs 0 vlan ${SVLAN} \n", 
+
+	    	"configuration save\n"
+]
+}
