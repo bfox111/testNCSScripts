@@ -1,0 +1,66 @@
+{
+"commands": [
+	"<edit-config>
+		<target>
+			<running/>
+		</target>
+		<default-operation>merge</default-operation>
+		<test-option>set</test-option>
+		<config>
+
+<snmp xmlns=\"urn:ietf:params:xml:ns:yang:ietf-snmp\">
+  <target>
+    <name>Navigator</name>
+    <udp>
+      <ip>${NAVIGATOR_IP}</ip>
+      <prefix-length>32</prefix-length>
+    </udp>
+    <tag>TrapTag</tag>
+    <target-params>tp-SNMPv2cUser</target-params>
+  </target>
+  <target-params>
+    <name>tp-SNMPv2cUser</name>
+    <v2c>
+      <security-name>SNMPv2cUser</security-name>
+    </v2c>
+  </target-params>
+  <notify>
+    <name>Traps</name>
+    <tag>TrapTag</tag>
+  </notify>
+  <community>
+    <index>SNMPv2cUser</index>
+    <text-name>${READ_COMMUNITY}</text-name>
+    <security-name>SNMPv2cUser</security-name>
+  </community>
+  <vacm>
+    <group>
+      <name>cienaGroup</name>
+      <member>
+        <security-name>SNMPv2cUser</security-name>
+        <security-model>v2c</security-model>
+      </member>
+      <access>
+        <context/>
+        <security-model>v2c</security-model>
+        <security-level>no-auth-no-priv</security-level>
+        <read-view>cienaAll</read-view>
+        <notify-view>cienaAll</notify-view>
+      </access>
+    </group>
+    <view>
+      <name>cienaAll</name>
+      <include>internet</include>
+    </view>
+  </vacm>
+  <agent xmlns=\"http://ciena.com/ns/yang/ciena-snmp-agent\"/>
+</snmp>
+
+
+
+		</config>
+	</edit-config>"
+
+
+	]
+}

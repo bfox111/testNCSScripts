@@ -61,7 +61,8 @@
   <fd>
      <name>FD_${CIRCUIT_NAME}</name>
     <description>${CIRCUIT_NAME}</description>
-  </fd>
+     <l2cp-profile>CPT</l2cp-profile>
+ </fd>
 </fds>
 <fps xmlns=\"urn:ciena:params:xml:ns:yang:ciena-pn:ciena-mef-fp\">
   <fp>
