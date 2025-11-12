@@ -13,8 +13,8 @@ import requests
 import time
 import os
 
-# mcp = "10.92.44.122"
-mcp = "10.75.1.254"
+mcp = "10.92.44.122"
+# mcp = "10.75.1.254"
 
 
 
