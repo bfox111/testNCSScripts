@@ -1,0 +1,53 @@
+{
+    "tests": [
+       {
+          "testName": "ELINE",
+          "testDescription": "Setup ELINE between PE-6x and PE-10x.  I need to test LLDP between the CE boxes.",
+          "testType": "ELINE",
+
+          "customScripts": [
+             {
+                "deviceName": "PE-6x",
+                "cmdFile": "ELINE",
+                "scriptAttributes": {
+                  "UNI_PORT": "10",
+                  "SVLAN": "600",
+                  "MBPS_CIR": "1000",
+                  "MD_LEVEL": "5",
+                  "CIRCUIT_NAME": "ELINE600",
+                  "NNI_PORT": "11",
+                  "LOCAL_MEP": "1",
+                  "REMOTE_MEP": "2"
+                }
+              },
+              {
+                "deviceName": "PE-10x",
+                "cmdFile": "ELINE",
+                "scriptAttributes": {
+                  "UNI_PORT": "1",
+                  "SVLAN": "600",
+                  "MBPS_CIR": "1000",
+                  "CIRCUIT_NAME": "ELINE600",
+                  "NNI_PORT": "4",
+                  "MD_LEVEL": "5",
+                  "LOCAL_MEP": "2",
+                  "REMOTE_MEP": "1"
+                } 
+              }
+          ],
+          "sleepTime": 10,
+          "verificationCommands": {
+              "PE-6x": [
+                  "cfm servi show",
+                  "cfm delay show ",
+                  "cfm synthetic-loss show"
+              ],
+              "PE-10x": [
+                  "show cfm delay",
+                  "sh cfm synthetic-loss-measurement",
+                  "show flow"
+              ]
+          }
+      }
+    ]
+ }
